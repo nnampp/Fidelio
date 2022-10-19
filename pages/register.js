@@ -1,8 +1,5 @@
 import img_register from '../public/img_register.png'
 import Link from 'next/link'
-import { useState } from 'react'
-import { doc, setDoc } from "firebase/firestore"
-import { db } from '../lib/firebase'
 
 export default function register() {
 
@@ -17,7 +14,7 @@ export default function register() {
          Role: "User"
       };
       
-      const res = await fetch('/api/register', {
+      const res = await fetch('/api/regist', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(body)
