@@ -12,6 +12,7 @@ export default function search() {
    const onSubmit = (e) => {
       e.preventDefault()
       setSelectType("All");
+      searchAll();
    }
 
    const searchAll = () => {
@@ -26,7 +27,7 @@ export default function search() {
                <Navbar />
                <div className="w-full h-screen bg-gradient-to-b from-[#000000] via-[#100526] to-[#1C0943] rounded-[10px]">
                   <div className="flex flex-col items-center justify-center h-full">
-                     <div className={`${openSearch && "hidden"} font-League_Spartan font-bold text-[#FFFFFF] text-[64px] leading-[59px] mb-[88px]`}>Search</div>
+                     <div className={`${openSearch ? "hidden" : ""} font-League_Spartan font-bold text-[#FFFFFF] text-[64px] leading-[59px] mb-[88px]`}>Search</div>
                      <div className="relative">
                         <img src={icon_search_white.src} alt="" className={`${showicon ? "hidden" : ""} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
                         <img src={icon_search_black.src} alt="" className={`${showicon ? "" : "hidden"} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
