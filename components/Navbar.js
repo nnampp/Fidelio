@@ -5,22 +5,27 @@ import icon_search from '../public/icon_search.svg'
 import arrow_down from '../public/arrow_down.svg'
 import arrow_up from '../public/arrow_up.svg'
 import logo from "../public/Logo.png"
+import Link from 'next/link'
 
 export default function Navbar() {
    return (
       <>
          <div className="fixed top-0 w-full bg-[#000000] h-[99px] z-10 max-w-screen-xl mx-auto">
             <div className="flex flex-row justify-between items-center h-full">
-               <img src={logo.src} alt="" className="w-[70px] h-[70px] ml-[45px]"/>
+               <img src={logo.src} alt="" className="w-[70px] h-[70px] ml-[45px]" />
                <div className="flex flex-row gap-[23px]">
-                  <div className="flex flex-row items-center gap-[15px] h-full">
-                     <img src={icon_home.src} alt="icon home" />
-                     <div className="font-League_Spartan text-[40px] text-[#FFFFFF] font-bold leading-[37px]">Home</div>
-                  </div>
-                  <div className="flex flex-row items-center gap-[15px] h-full">
-                     <img src={icon_search.src} alt="icon search" />
-                     <div className="font-League_Spartan text-[40px] text-[#FFFFFF] font-bold leading-[37px]">Search</div>
-                  </div>
+                  <Link href="/home" >
+                     <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">
+                        <img src={icon_home.src} alt="icon home" className="w-[35px] h-[35px]"/>
+                        <div className=" font-League_Spartan text-[40px] text-[#FFFFFF] font-bold leading-[37px]">Home</div>
+                     </div>
+                  </Link>
+                  <Link href="/search" >
+                     <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">
+                        <img src={icon_search.src} alt="icon search" className="w-[26px] h-[25px]"/>
+                        <div className="cursor-pointer font-League_Spartan text-[40px] text-[#FFFFFF] font-bold leading-[37px]">Search</div>
+                     </div>
+                  </Link>
                </div>
                <Popover className="relative mr-[30px]">
                   {({ open }) => (
@@ -49,22 +54,16 @@ export default function Navbar() {
                                  <div className=" font-League_Spartan text-[24px] font-bold text-[#FFFFFF] leading-[22px] mb-[19px]">
                                     Anmym
                                  </div>
-                                 <div className="flex flex-row gap-[19px] font-League_Spartan text-[#FFFFFF] mb-[19px]">
-                                    <div className="flex flex-col gap-[5px] ">
-                                       <p className="text-[12px] font-bold leading-[11px]">First Name</p>
-                                       <p className="text-[11px] font-normal leading-[10px]">Natthamol</p>
-                                    </div>
-                                    <div className="flex flex-col gap-[5px] ">
-                                       <p className="text-[12px] font-bold leading-[11px]">Last Name</p>
-                                       <p className="text-[11px] font-normal leading-[10px]">Sungthong</p>
-                                    </div>
+                                 <div className="flex flex-col gap-[5px] font-League_Spartan text-[#FFFFFF] mb-[18px]">
+                                    <p className="text-[12px] font-bold leading-[11px]">Full Name</p>
+                                    <p className="text-[11px] font-normal leading-[10px]">Natthamol &nbsp; Sungthong</p>
                                  </div>
                                  <div className="flex flex-col gap-[5px] font-League_Spartan text-[#FFFFFF] mb-[13px]">
                                     <p className="text-[12px] font-bold leading-[11px]">E-mail</p>
                                     <p className="text-[11px] font-normal leading-[10px]">natthamol.46@mail.kmutt.ac.th</p>
                                  </div>
                                  <div className="w-[160px] h-[1px] mb-[9px] bg-[#C6C7DA] opacity-[40%]"></div>
-                                 <div className="font-League_Spartan text-[#FFFFFF] text-[24px] font-bold leading-[22px]">Logout</div>
+                                 <div className="font-League_Spartan text-[#FFFFFF] text-[24px] font-bold leading-[22px]">Log out</div>
                               </div>
                            </Popover.Panel>
                         </Transition>
@@ -74,7 +73,7 @@ export default function Navbar() {
             </div>
             <div className="bg-[#C6C7DA] w-full h-[1px]"></div>
          </div>
-         
+
       </>
    )
 }
