@@ -22,13 +22,13 @@ export default function register() {
       
       const res2 = await res.json();
       if (res2.error) {
-         alert(res2.error);
-         window.location = '/register';
-     }
-     else {
-         alert(res2.message);
-         window.location = '/signin';
-     } 
+            alert(res2.error);
+            window.location = '/register';
+      }
+      else {
+            alert(res2.message);
+            window.location = '/signin';
+      } 
     }
 
    return (
