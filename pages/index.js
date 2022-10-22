@@ -1,7 +1,17 @@
 import Test from "../components/Test"
 import { Dropdown } from "flowbite-react";
 import logo from "../public/Logo.png"
+import Music from "../components/Music";
+
 export default function Home() {
+   const test = [
+      {
+         name: "I love you 3000",
+         artist: "someone",
+         time: "3:46"
+      },
+   
+   ];
    return (
       <>
          <img src={logo.src} alt="" className="w-[70px] h-[70px]" />
@@ -15,7 +25,7 @@ export default function Home() {
                     focus:outline-none" type="text"
             placeholder="Ouline-none" />
 
-
+         <Music/>
       </>
 
    )

@@ -1,7 +1,7 @@
 import button_play from "../public/button_play.svg"
 import icon_headphone from "../public/icon_headphone.svg"
 
-export default function Music() {
+export default function Music({name,artist,time}) {
    return (
       <>
          <div className="flex flex-row items-center h-[132px] w-full">
@@ -16,14 +16,14 @@ export default function Music() {
                      </div>
                   </div>
                   <div className="ml-[45px] flex flex-col gap-[9px] font-League_Spartan text-[#FFFFFF]">
-                     <p className="text-[32px] font-bold leading-[29px]">Song name</p>
-                     <p className="text-[24px] font-normal leading-[22px]">Artist</p>
+                     <p className="text-[32px] font-bold leading-[29px]">{name}</p>
+                     <p className="text-[24px] font-normal leading-[22px]">{artist}</p>
                   </div>
                </div>
             </div>
             <div className="basis-1/6">
                <div className="flex flex-row justify-end items-center">
-                  <p className="mr-[82px] font-Commissioner font-normal text-[#FFFFFF] text-[24px] leading-[29px]">3:27</p>
+                  <p className="mr-[82px] font-Commissioner font-normal text-[#FFFFFF] text-[24px] leading-[29px]">{time}</p>
                </div>
             </div>
          </div>

@@ -17,7 +17,6 @@ module.exports = {
     },
   },
   plugins: [
-   require("flowbite/plugin"),
    require('ps-scrollbar-tailwind'),
   ],
 }
