@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import Navbar from "../components/Navbar"
 import icon_search_white from "../public/icon_search_white.svg"
 import icon_search_black from "../public/icon_search_black.svg"
@@ -10,6 +10,9 @@ export default function search() {
    const [selectType, setSelectType] = useState("");
    const [content, setContent] = useState("");
    const [openSearch, setOpenSearch] = useState(0);
+   const resultNotFound = useRef(null);
+   const [lastvalue,setLastvalue] = useState("");
+
 
    const test = [
       {
@@ -85,19 +88,32 @@ export default function search() {
       e.preventDefault()
       setSelectType("All");
       searchAll();
+      setLastvalue(resultNotFound.current.value);
    }
 
    const searchAll = () => {
-      setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
+      if(content.length == 0){
+         console.log("Can't found")
+      }else{
+         setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
+      }
 
       {/*Get API of All*/ }
    }
    const searchSong = () => {
-      setOpenSearch(1);
+      if(content.length == 0){
+         console.log("Can't found")
+      }else{
+         setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
+      }
       {/*Get API of All*/ }
    }
    const searchArtist = () => {
-      setOpenSearch(1);
+      if(content.length == 0){
+         console.log("Can't found")
+      }else{
+         setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
+      }
       {/*Get API of All*/ }
    }
 
@@ -126,7 +142,7 @@ export default function search() {
             <>
                <div className="flex flex-col items-center mt-[53px]">
                   <img src={no_result.src} alt="" className="w-[143px] h-[148px]" />
-                  <div className="font-League_Spartan text-[48px] text-[#FFFFFF] opacity-50 font-medium leading-[44px] mb-[16px]">No results found for “{content}” </div>
+                  <div className="font-League_Spartan text-[48px] text-[#FFFFFF] opacity-50 font-medium leading-[44px] mb-[16px]">No results found for “{lastvalue}” </div>
                   <div className="font-League_Spartan text-[24px] text-[#FFFFFF] opacity-50 font-medium leading-[22px]">Please make sure your words are spelled correctly or use less or different keywords</div>
                </div>
             </>
@@ -146,7 +162,7 @@ export default function search() {
                         <img src={icon_search_white.src} alt="" className={`${showicon ? "hidden" : ""} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
                         <img src={icon_search_black.src} alt="" className={`${showicon ? "" : "hidden"} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
                         <form onSubmit={onSubmit}>
-                           <input type="text" className="mb-[52px] bg-[#2C2E47] w-[658px] h-[95px] rounded-[10px] border-[#D6D5E8] border text-[36px] leading-[33px] text-[#FFFFFF] font-League_Spartan font-medium pl-[140px] focus:bg-[#FFFFFF] focus:border-[#2C2E47] focus:outline-none focus:text-[#2C2E47]"
+                           <input ref={resultNotFound} type="text" className="mb-[52px] bg-[#2C2E47] w-[658px] h-[95px] rounded-[10px] border-[#D6D5E8] border text-[36px] leading-[33px] text-[#FFFFFF] font-League_Spartan font-medium pl-[140px] focus:bg-[#FFFFFF] focus:border-[#2C2E47] focus:outline-none focus:text-[#2C2E47]"
                               placeholder="What do you want to listen to ?" onFocus={() => setShowicon(1)} onBlur={() => setShowicon(0)} onChange={e => { setContent(e.target.value); }} required />
                         </form>
                      </div>
@@ -158,6 +174,21 @@ export default function search() {
                      <div className={`${openSearch ? "block" : "hidden"} w-full h-full overflow-y-scroll scrollbar scrollbar-width-2`}>
                         {showMusic()}
                      </div>
+                     {/* {
+                        () => {  
+                           if(content.length == 0){
+                              return(
+                                 <>
+                                    <p>Please fill out field</p>
+                                 </>
+                              )
+                           }else{
+                              return(
+                                 
+                              )
+                           }
+                        }
+                     } */}
                   </div>
                </div>
             </div>
