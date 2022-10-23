@@ -5,7 +5,7 @@ export default function Import() {
         <>
             <div className="w-full h-screen bg-black">
                 <div className="bg-center w-full h-full bg-no-repeat" style={{ backgroundImage: `url(/bg-import.png)` }}>
-                    <p></p>
+                    <p></p>*
                 </div>
             </div>
         </>
