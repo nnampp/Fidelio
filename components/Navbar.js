@@ -5,7 +5,6 @@ import icon_search from '../public/icon_search.svg'
 import arrow_down from '../public/arrow_down.svg'
 import arrow_up from '../public/arrow_up.svg'
 import logo from "../public/Logo.png"
-import music from "../public/music2.png"
 import Link from 'next/link'
 import door from "../public/icon_door.svg"
 
@@ -16,7 +15,7 @@ export default function Navbar() {
       <>
          <div className="fixed top-0 w-full bg-[#000000] h-[99px] z-10 max-w-screen-xl mx-auto">
             <div className="flex flex-row justify-between items-center h-full">
-               <img src={music.src} alt="" className=" h-[70px] ml-[45px]" />
+               <img src={logo.src} alt="" className=" h-[70px] ml-[45px]" />
                <div className="flex flex-row gap-[23px]">
                   <Link href="/home" >
                      <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">

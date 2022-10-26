@@ -11,10 +11,10 @@ export default function search() {
    const [content, setContent] = useState("");
    const [openSearch, setOpenSearch] = useState(0);
    const resultNotFound = useRef(null);
-   const [lastvalue,setLastvalue] = useState("");
+   const [lastvalue, setLastvalue] = useState("");
+   const [warning, setWarning] = useState(0)
 
-
-   const test = [
+   const infoAll = [
       {
          name: "I love you 3000",
          artist: "Aom",
@@ -37,7 +37,7 @@ export default function search() {
       },
 
    ];
-   const test2 = [
+   const infoSong = [
       {
          name: "I love you 0",
          artist: "Aom",
@@ -60,7 +60,7 @@ export default function search() {
       },
 
    ];
-   const test3 = [
+   const infoArtist = [
       // {
       //    name: "I love you -",
       //    artist: "Aom",
@@ -92,48 +92,59 @@ export default function search() {
    }
 
    const searchAll = () => {
-      if(content.length == 0){
-         console.log("Can't found")
-      }else{
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
          setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
       }
 
-      {/*Get API of All*/ }
+      
    }
    const searchSong = () => {
-      if(content.length == 0){
-         console.log("Can't found")
-      }else{
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
          setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
       }
-      {/*Get API of All*/ }
+      
    }
    const searchArtist = () => {
-      if(content.length == 0){
-         console.log("Can't found")
-      }else{
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
          setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
       }
-      {/*Get API of All*/ }
+      
    }
 
    const showMusic = () => {
-      console.log(selectType)
-      if (selectType == "All" && test.length != 0) {
+      if (selectType == "All" && infoAll.length != 0) {
          return (
-            test.map((num, i) => {
+            infoAll.map((num, i) => {
                return <Music name={num.name} artist={num.artist} time={num.time} key={i} />
             })
          )
-      } else if (selectType == "Song" && test2.length != 0) {
+      } else if (selectType == "Song" && infoSong.length != 0) {
          return (
-            test2.map((num, i) => {
+            infoSong.map((num, i) => {
                return <Music name={num.name} artist={num.artist} time={num.time} key={i} />
             })
          )
-      } else if (selectType == "Artist" && test3.length != 0) {
+      } else if (selectType == "Artist" && infoArtist.length != 0) {
          return (
-            test3.map((num, i) => {
+            infoArtist.map((num, i) => {
                return <Music name={num.name} artist={num.artist} time={num.time} key={i} />
             })
          )
@@ -150,6 +161,14 @@ export default function search() {
       }
    }
 
+   const showWarnFind = () => {
+      return (
+         <>
+            <div className="mt-[12px] text-[#DC1414] font-Commissioner">Please, specify name of song or artist on textbox!</div>
+         </>
+      )
+   }
+
    return (
       <>
          <div className="bg-[#2D106A] h-screen overflow-hidden">
@@ -162,33 +181,21 @@ export default function search() {
                         <img src={icon_search_white.src} alt="" className={`${showicon ? "hidden" : ""} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
                         <img src={icon_search_black.src} alt="" className={`${showicon ? "" : "hidden"} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
                         <form onSubmit={onSubmit}>
-                           <input ref={resultNotFound} type="text" className="mb-[52px] bg-[#2C2E47] w-[658px] h-[95px] rounded-[10px] border-[#D6D5E8] border text-[36px] leading-[33px] text-[#FFFFFF] font-League_Spartan font-medium pl-[140px] focus:bg-[#FFFFFF] focus:border-[#2C2E47] focus:outline-none focus:text-[#2C2E47]"
-                              placeholder="What do you want to listen to ?" onFocus={() => setShowicon(1)} onBlur={() => setShowicon(0)} onChange={e => { setContent(e.target.value); }} required />
+                           <input ref={resultNotFound} type="text" className="bg-[#2C2E47] w-[658px] h-[95px] rounded-[10px] border-[#D6D5E8] border text-[36px] leading-[33px] text-[#FFFFFF] font-League_Spartan font-medium pl-[140px] focus:bg-[#FFFFFF] focus:border-[#2C2E47] focus:outline-none focus:text-[#2C2E47]"
+                              placeholder="What do you want to listen to ?" onFocus={() => setShowicon(1)} onBlur={() => setShowicon(0)} onChange={e => { setContent(e.target.value); }}  />
                         </form>
                      </div>
-                     <div className="flex flex-row gap-[30px] mb-4">
+                     <div className={`${warning ? "block " : "hidden"}`}>
+                        {showWarnFind()}
+                     </div>
+                     <div className="flex flex-row gap-[30px] mb-4 mt-[52px]">
                         <button className={`bg-[#2C2E47] w-[188px] h-[54px] text-[#FFFFFF] text-[36px] font-League_Spartan font-medium leading-[33px] border border-[#D6D5E8] rounded-[30px] text-center  ${selectType == "All" ? "bg-[#FFFFFF] text-[#000000]" : ""}`} onClick={() => { setSelectType("All"); searchAll(); }}>All</button>
                         <button className={`bg-[#2C2E47] w-[188px] h-[54px] text-[#FFFFFF] text-[36px] font-League_Spartan font-medium leading-[33px] border border-[#D6D5E8] rounded-[30px] text-center ${selectType == "Song" ? "bg-[#FFFFFF] text-[#000000]" : ""}`} onClick={() => { setSelectType("Song"); searchSong(); }}>Songs</button>
                         <button className={`bg-[#2C2E47] w-[188px] h-[54px] text-[#FFFFFF] text-[36px] font-League_Spartan font-medium leading-[33px] border border-[#D6D5E8] rounded-[30px] text-center ${selectType == "Artist" ? "bg-[#FFFFFF] text-[#000000]" : ""}`} onClick={() => { setSelectType("Artist"); searchArtist(); }}>Artists</button>
                      </div>
                      <div className={`${openSearch ? "block" : "hidden"} w-full h-full overflow-y-scroll scrollbar scrollbar-width-2`}>
                         {showMusic()}
-                     </div>
-                     {/* {
-                        () => {  
-                           if(content.length == 0){
-                              return(
-                                 <>
-                                    <p>Please fill out field</p>
-                                 </>
-                              )
-                           }else{
-                              return(
-                                 
-                              )
-                           }
-                        }
-                     } */}
+                     </div>     
                   </div>
                </div>
             </div>
