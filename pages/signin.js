@@ -1,7 +1,15 @@
 import img_register from '../public/img_register.png'
 import Link from 'next/link'
+import { parseCookies } from 'nookies'
+import cookie from 'js-cookie'
 
 export default function register() {
+   const cookieuser = parseCookies()
+   const tok = cookieuser.token;
+
+   if(tok) {
+      history.back();
+   }
 
    async function handleSubmit(e) {
       e.preventDefault();
@@ -18,10 +26,14 @@ export default function register() {
       
       const res2 = await res.json();
       if (res2.error) {
-            alert(res2.error);
+         alert(res2.error);
       }
       else {
-            alert(res2.message);
+         cookie.set('token',res2.token);
+         cookie.set('user',JSON.stringify(res2.user));
+         //console.log(res2.user);
+         alert(res2.message);
+         window.location = '/testcookie';
       } 
    }
 

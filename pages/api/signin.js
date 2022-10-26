@@ -7,10 +7,11 @@ export default async function handler(req, res) {
     if (getUser) {
         const user = await getUserbySignin({ Username, Password });
         if(user) {
+            const { Email, Name, Password, Phonenumber, Role, Username } = user
             res.status(201).json({
                 status: true,
-                user: user,
-                //token: user.token,
+                user: { Email, Name, Password, Phonenumber, Role, Username },
+                token: user.token,
                 message: "Signin complete !!"
             })
         }
