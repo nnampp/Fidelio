@@ -1,7 +1,42 @@
 import img_register from '../public/img_register.png'
 import Link from 'next/link'
+import { parseCookies } from 'nookies'
+import cookie from 'js-cookie'
 
 export default function register() {
+   const cookieuser = parseCookies()
+   const tok = cookieuser.token;
+
+   if(tok) {
+      history.back();
+   }
+
+   async function handleSubmit(e) {
+      e.preventDefault();
+      const body = {
+         Username: e.currentTarget.userlogin.value,
+         Password: e.currentTarget.passlogin.value
+      };
+      
+      const res = await fetch('/api/signin', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify(body)
+      });
+      
+      const res2 = await res.json();
+      if (res2.error) {
+         alert(res2.error);
+      }
+      else {
+         cookie.set('token',res2.token);
+         cookie.set('user',JSON.stringify(res2.user));
+         //console.log(res2.user);
+         alert(res2.message);
+         window.location = '/testcookie';
+      } 
+   }
+
    return (
       <>
          <div className="bg-[#2D106A] w-full h-screen">
@@ -17,17 +52,18 @@ export default function register() {
                         </div>
                      </div>
                      <div className="basis-[45.33%] bg-[#040926] rounded-r-[10px]">
+                     <form id="login-form" onSubmit={handleSubmit}>
                         <div className="flex flex-col w-full h-full items-center pt-[80px]">
                            <div className='text-[55px] font-League_Spartan font-bold text-[#FFFFFF] mb-[18px]'>Sign in</div>
                            <div className='font-Commissioner font-normal text-[#FFFFFF] mb-[40px]'>Welcome ! Let's log in before to the website.</div>
                            <div className='flex flex-col items-start gap-[8px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Username</label>
-                              <input type="text" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your username" required />
+                              <input type="text" id="userlogin" name="userlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your username" required />
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
                            <div className='flex flex-col items-start gap-[8px] mb-[51px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>
-                              <input type="password" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your Password" required />
+                              <input type="password" id="passlogin" name="passlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your Password" required />
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
 
@@ -35,6 +71,7 @@ export default function register() {
                            <button type="submit" className="w-[170px] h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-bold font-League_Spartan bg-gradient-to-r from-[#723AE8] via-[#6763CE] to-[#7BB2E5] mb-[44px] focus:ring focus:ring-[#5D37AC]" >Login</button>
                            <div className="font-League_Spartan text-[#696F79]">I don't have an account? <Link href="/register"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Register</u></span></Link>  </div>
                         </div>
+                        </form>
                      </div>
                   </div>
                </div>
