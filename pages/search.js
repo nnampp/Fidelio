@@ -13,9 +13,22 @@ export default function search() {
    const resultNotFound = useRef(null);
    const [lastvalue, setLastvalue] = useState("");
    const [warning, setWarning] = useState(0)
+   
+   useEffect(() => {
+      async function getAllSonglist() {
+         const res = await fetch('/api/song', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' }
+      });
+      const res2 = await res.json();
+      const songAll = await Object.values(res2.song);
+      await getSong(songAll);
+      }
+      getAllSonglist();
+   }, []);
 
    const infoAll = [
-      {
+      /*{
          name: "I love you 3000",
          artist: "Aom",
          time: "3:46"
@@ -34,11 +47,10 @@ export default function search() {
          name: "I love you eiei",
          artist: "Nampueng -.-",
          time: "1:46"
-      },
-
+      },*/
    ];
    const infoSong = [
-      {
+      /*{
          name: "I love you 0",
          artist: "Aom",
          time: "3:46"
@@ -57,7 +69,7 @@ export default function search() {
          name: "I love you eiei",
          artist: "Nampueng -.-",
          time: "1:46"
-      },
+      },*/
 
    ];
    const infoArtist = [

@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< Updated upstream
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
     "bcryptjs": "^2.4.3",
@@ -18,15 +17,12 @@
     "flowbite-react": "^0.2.0",
     "js-cookie": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
-    "next": "12.3.1",
     "nookies": "^2.5.2",
-=======
     "axios": "^1.1.3",
     "child_process": "^1.0.2",
     "manifest.json": "^1.2.0",
     "next": "^12.3.1",
     "node-powershell": "^5.0.1",
->>>>>>> Stashed changes
     "react": "18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
@@ -38,11 +34,8 @@
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
     "postcss": "^8.4.17",
-<<<<<<< Updated upstream
     "ps-scrollbar-tailwind": "^0.0.1",
-=======
     "python-shell": "^3.0.1",
->>>>>>> Stashed changes
     "tailwindcss": "^3.1.8"
   }
 }
