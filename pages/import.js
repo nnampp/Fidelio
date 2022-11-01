@@ -1,12 +1,9 @@
 import React from 'react'
 import headphone from '../public/headphone.png'
 import guitar from '../public/guitar.png'
-//import {PythonShell} from 'python-shell';
-
+import { PythonShell } from 'python-shell'
 
 export default function Import() {
-
-   //let {PythonShell} = require('python-shell');
 
    async function handleSubmit(e) {
       e.preventDefault();
@@ -18,26 +15,39 @@ export default function Import() {
          Role: "Admin"
       };
       
-      //const PythonShell = require('python-shell');
+      // const res = await fetch('/imports', {
+      //    method: 'POST',
+      //    headers: { 'Content-Type': 'application/json' },
+      //    //body: JSON.stringify(body)
+      // });
+
+      // const res2 = await res.json();
+      // console.log(res2);
       
       const dict_values = (body)
       const s = JSON.stringify(dict_values);
       console.log(s)
-      /*
-      //const {spawn} = require('child_process');
-      //const python = spawn('python', ['bootsbase function.py']);
 
-      let options={
-         scriptPath:"/Bootsbase",
-         args: [s]
-      }
+      const spawn = require("child_process").spawn;
 
-      PythonShell.run("bootsbase function.py",options,(err,res)=>{
-         if (err) console.log(err);
-         if (res) console.log(res);
-      });
-   */
-    } 
+      PythonShell.runString('x=1+1;print(x)', null, function (err) {
+         if (err) throw err;
+         console.log('finished');
+       });
+      
+      
+      // const python = spawn('python', ['bootsbase function.py']);
+
+      // let options={
+      //    scriptPath:"/Bootsbase",
+      //    args: [s]
+      // }
+
+      // PythonShell.run("bootsbase function.py",options,(err,res)=>{
+      //    if (err) console.log(err);
+      //    if (res) console.log(res);
+      // });
+   } 
 
    return (
       <>
