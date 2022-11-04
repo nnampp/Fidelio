@@ -33,7 +33,7 @@ export default function register() {
          cookie.set('user',JSON.stringify(res2.user));
          //console.log(res2.user);
          alert(res2.message);
-         window.location = '/testcookie';
+         window.location = '/home';
       } 
    }
 
