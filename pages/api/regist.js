@@ -11,14 +11,14 @@ export default async function handler(req, res) {
 
     var phoneformat = /^\d{10}$/;
     if(!Phonenumber.match(phoneformat)){
-        return res.status(422).json({ error: "Phonenumber is not valid" })
+        return res.status(422).json({ error: "Phone number is not valid" })
     }
     
     const hashedPassword = await bcrypt.hash(Password, 10)
 
     const regist = await createUser({Username, Password: hashedPassword, Name, Email, Phonenumber, Role})
     if (regist) {
-        res.status(200).json({ message: "Register  Successfully" })
+        res.status(200).json({ message: "Register Successfully" })
     }
     else {
         res.status(404).json({ message: "Something went Wrong..!" })

@@ -58,7 +58,7 @@ export default function register() {
                            <div className='w-[427px] h-[1px] bg-[#6D7097] mb-[24px]'></div>
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Username</label>
-                              <input type="text" id="username" name="username" className="bg-[#2C2E47]  w-[445px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your username" required />
+                              <input type="text" id="username" name="username" className="bg-[#2C2E47]  w-[445px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your username" />
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
@@ -91,6 +91,14 @@ export default function register() {
                               <div className='flex flex-col items-start gap-[4px] '>
                                  <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Phone Number</label>
                                  <input type="text" id="phonenumber" name="phonenumber" className="bg-[#2C2E47]  w-[220px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your phone number" required />
+                              </div>
+                           </div>
+                           <div className='flex flex-row gap-[7px] mb-[37px]'>
+                              <div className='flex flex-col items-center w-full h-full'>
+                                 
+                              </div>
+                              <div className='flex flex-col items-center w-full h-full'>
+                                 <p className="text-[12px] font-Commissioner font-normal text-[#DC1414]">This username isn't available. Please try another.</p>
                               </div>
                            </div>
                            <button type="submit" href="/signin" className="w-[170px]  h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-medium font-League_Spartan bg-gradient-to-r from-[#794BD9] via-[#A35AAD] to-[#FA59AB] mb-[12px] focus:ring focus:ring-[#5D37AC]" >Register Account</button>
