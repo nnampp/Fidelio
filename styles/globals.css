@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Commissioner:wght@100;200;300;400;500;600;700;800;900&family=Dosis:wght@200;300;400;500;600;700;800&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
@@ -13,4 +12,41 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+}
+
+@layer components {
+   /* Bar chrome */
+   .sliderWithLabels {
+      appearance: none;
+      width: 300px;
+      height: 4px;
+      background: D6D5E8;
+      border-radius: 5px;
+      background-image: linear-gradient(#6763CE, #6763CE);
+      background-repeat: no-repeat;
+   }
+
+   /* Button of chrome */
+   .sliderWithLabels::-webkit-slider-thumb {
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      background: #6763CE;
+      cursor: pointer;
+      box-shadow: 0 0 2px 0 rgb(85,85,85);
+      appearance: none;
+   }
+
+   .sliderWithLabels::-webkit-slider-thumb:hover {
+      /* background: #851fcf; */
+      box-shadow: #9d9aca 0px 0px 0px 4px;
+   }
+
+   /* Bar safari */
+   .sliderWithLabels::-webkit-slider-runnable-track {
+      appearance: none;
+      box-shadow: none;
+      border: none;
+      background: transparent;
+   }
 }
