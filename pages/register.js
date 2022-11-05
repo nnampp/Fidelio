@@ -2,6 +2,7 @@ import img_register from '../public/img_register.png'
 import Link from 'next/link'
 import { parseCookies } from 'nookies'
 import { sign } from 'jsonwebtoken';
+import notification from "../public/notification.png"
 
 export default function register() {
    const cookieuser = parseCookies()
@@ -94,12 +95,12 @@ export default function register() {
                                  <input type="text" id="phonenumber" name="phonenumber" className="bg-[#2C2E47]  w-[220px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your phone number" required />
                               </div>
                            </div>
-                           <div className='flex flex-row gap-[2px] mb-[37px]'>
+                           <div className='flex flex-row gap-[6px] mb-[10px] '>
                               <div className='flex flex-col items-center w-full h-full'>
-                                 <img src={sign.src} alt="" className="w-[20px] h-[20px]" />
+                                 <img src={notification.src} alt="" className="w-[10px] h-[10px]" />
                               </div>
                               <div className='flex flex-col items-center w-full h-full'>
-                                 <p className="text-[12px] font-Commissioner font-normal text-[#DC1414]">This username isn't available. Please try another.</p>
+                                 <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This username isn't available. Please try another.</p>
                               </div>
                            </div>
                            <button type="submit" href="/signin" className="w-[170px]  h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-medium font-League_Spartan bg-gradient-to-r from-[#794BD9] via-[#A35AAD] to-[#FA59AB] mb-[12px] focus:ring focus:ring-[#5D37AC]" >Register Account</button>
