@@ -1,3 +1,4 @@
+import { useState} from "react"
 import img_register from '../public/img_register.png'
 import Link from 'next/link'
 import { parseCookies } from 'nookies'
@@ -7,6 +8,9 @@ import notification from "../public/notification.png"
 export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
+   const [content, setContent] = useState("");
+   const [notification, setNotification] = useState(0)
+   const [warning, setWarning] = useState(0)
 
    if(tok) {
       history.back();
@@ -29,15 +33,109 @@ export default function register() {
          body: JSON.stringify(body)
       });
       
-      const res2 = await res.json();
-      if (res2.error) {
-            alert(res2.error);
-      }
-      else {
-            alert(res2.message);
-            window.location = '/signin';
-      } 
+      // {const res2 = await res.json();
+      // if (res2.error) {
+      //       focus(res2.error);
+      // }
+      // else {
+      //       alert(res2.message);
+      //       window.location = '/signin';
+      // } 
     }
+
+   //notification extension
+   const inputUsername = () => {
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
+         setNotification(1);
+      }
+   }
+   const inputPassword = () => {
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
+         setNotification(1);
+      }
+   }
+   const inputFullName = () => {
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
+         setNotification(1);
+      }
+   }
+   const inputEmail = () => {
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
+         setNotification(1);
+      }
+   }
+   const inputPhoneNumber = () => {
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
+         setNotification(1);
+      }
+   }
+   const buttonSubmit = () => {
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
+         setNotification(1);
+      }
+   }
+   const showSignin = () => {
+      if (content.length == 0) {
+         setWarning(1);
+      } else {
+         setWarning(0);
+
+         {/*Get API of All*/ }
+
+         setNotification(1);
+      }
+   }
+
+   const showWarnFind = () => {
+      return (
+         <>
+            <div className='flex flex-row gap-[6px] mb-[10px] '>
+               <div className='flex flex-col items-center w-full h-full'>
+                  <img src={notification.src} alt="" className="w-[10px] h-[10px]" /> 
+               </div>
+               <div className='flex flex-col items-center w-full h-full'>
+                  <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This username isn't available. Please try another.</p>
+               </div>
+            </div>
+         </>
+      )
+   }
 
    return (
       <>
@@ -60,7 +158,7 @@ export default function register() {
                            <div className='w-[427px] h-[1px] bg-[#6D7097] mb-[24px]'></div>
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Username</label>
-                              <input type="text" id="username" name="username" className="bg-[#2C2E47]  w-[445px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your username" />
+                              <input type="text" id="username" name="username" className={`${notification ? "border-[#D6D5E8]" : "border-[#FA3939]"}"bg-[#2C2E47]  w-[445px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your username" required />
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
@@ -95,13 +193,8 @@ export default function register() {
                                  <input type="text" id="phonenumber" name="phonenumber" className="bg-[#2C2E47]  w-[220px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your phone number" required />
                               </div>
                            </div>
-                           <div className='flex flex-row gap-[6px] mb-[10px] '>
-                              <div className='flex flex-col items-center w-full h-full'>
-                                 <img src={notification.src} alt="" className="w-[10px] h-[10px]" />
-                              </div>
-                              <div className='flex flex-col items-center w-full h-full'>
-                                 <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This username isn't available. Please try another.</p>
-                              </div>
+                           <div className={`${warning ? "hidden": ""} `}>
+                              {showWarnFind()}
                            </div>
                            <button type="submit" href="/signin" className="w-[170px]  h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-medium font-League_Spartan bg-gradient-to-r from-[#794BD9] via-[#A35AAD] to-[#FA59AB] mb-[12px] focus:ring focus:ring-[#5D37AC]" >Register Account</button>
                            <div className="font-League_Spartan text-[#696F79] text-[12px]">Do you already have an account? <Link href="/signin"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Sign in</u></span></Link>  </div>
