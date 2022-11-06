@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { parseCookies } from 'nookies'
 import cookie from 'js-cookie'
 import { useState } from "react"
-import notificationimg from "../public/notificationing.png"
+{/*import notificationimg from "../public/notificationing.png"*/}
 
 export default function register() {
    const cookieuser = parseCookies()
@@ -53,7 +53,7 @@ export default function register() {
          <>
             <div className='flex flex-row gap-[6px] mb-[10px] '>
                <div className='flex flex-col items-center w-full h-full'>
-                  <img src={notificationimg.src} alt="" className="w-[10px] h-[10px]" /> 
+                  {/* <img src={notificationimg.src} alt="" className="w-[10px] h-[10px]" />  */}
                </div>
                <div className='flex flex-col items-center w-full h-full'>
                   <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This username isn't available. Please try another.</p>
