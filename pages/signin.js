@@ -3,11 +3,16 @@ import Link from 'next/link'
 import { parseCookies } from 'nookies'
 import cookie from 'js-cookie'
 import { useState } from "react"
+import notificationimg from "../public/notificationing.png"
 
 export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
    const [openSearch, setOpenSearch] = useState(1);
+   const [warning, setWarning] = useState(1)
+
+  
+
 
    if(tok) {
       history.back();
@@ -42,6 +47,20 @@ export default function register() {
          alert(res2.message);
          window.location = '/home';
       } 
+   }
+   const showWarnFind = () => {
+      return (
+         <>
+            <div className='flex flex-row gap-[6px] mb-[10px] '>
+               <div className='flex flex-col items-center w-full h-full'>
+                  <img src={notificationimg.src} alt="" className="w-[10px] h-[10px]" /> 
+               </div>
+               <div className='flex flex-col items-center w-full h-full'>
+                  <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This username isn't available. Please try another.</p>
+               </div>
+            </div>
+         </>
+      )
    }
 
    return (
@@ -85,7 +104,10 @@ export default function register() {
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
 
-                           
+                           <div className={`${warning ? "hidden" : "" } `}>
+                              {showWarnFind()}
+
+                           </div>
                            <button type="submit" className="w-[170px] h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-bold font-League_Spartan bg-gradient-to-r from-[#723AE8] via-[#6763CE] to-[#7BB2E5] mb-[44px] focus:ring focus:ring-[#5D37AC]" >Login</button>
                            <div className="font-League_Spartan text-[#696F79]">I don't have an account? <Link href="/register"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Register</u></span></Link>  </div>
                         </div>
