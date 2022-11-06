@@ -1,15 +1,25 @@
+import { useState } from "react"
 import button_play from "../public/button_play.svg"
 import icon_headphone from "../public/icon_headphone.svg"
+import Link from "next/link";
 
-export default function Music({name,artist,time}) {
+export default function Music({ name, artist, time }) {
+   const listMusic = [
+      {
+         name: "Playtime",
+         artist: "meaw"
+      }
+   ]
    return (
       <>
          <div className="flex flex-row items-center h-[132px] w-full">
             <div className="basis-5/6">
                <div className="flex flex-row items-center">
-                  <a href="#" className="ml-[49px]">
-                     <img src={button_play.src} alt="" className="w-[62px] h-[62px]" />
-                  </a>
+                  <div className="ml-[49px]">
+                     <Link href={`/listentosong/${listMusic[0].name}`}>
+                        <img src={button_play.src} alt="" className="w-[62px] h-[62px]" />
+                     </Link>
+                  </div>
                   <div className="ml-[69px] w-[80px] h-[80px] bg-gradient-to-b from-[#4180DB] via-[#586DBB] to-[#8A68CF] rounded-[10px]">
                      <div className="flex flex-row justify-center items-center w-full h-full">
                         <img src={icon_headphone.src} alt="" className="w-[62px] h-[62px]" />
@@ -28,6 +38,7 @@ export default function Music({name,artist,time}) {
             </div>
          </div>
          <div className="w-full h-[1px] bg-[#C6C7DA] opacity-40 z-0"></div>
+
       </>
    )
 }
