@@ -1598,6 +1598,11 @@
   "resolved" "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.25.3.tgz"
   "version" "3.25.3"
 
+"core-js@^3.0.1":
+  "integrity" "sha512-+DkDrhoR4Y0PxDz6rurahuB+I45OsEUv8E1maPTB6OuHRohMMcznBq9TMpdpDMm/hUPob/mJJS3PqgbHpMTQgw=="
+  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.26.0.tgz"
+  "version" "3.26.0"
+
 "core-util-is@~1.0.0":
   "integrity" "sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ=="
   "resolved" "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz"
@@ -2354,7 +2359,7 @@
     "glob" "~3.2.9"
     "lodash" "~2.4.1"
 
-"firebase@^9.12.1":
+"firebase@*", "firebase@^9.0.0", "firebase@^9.13.0":
   "integrity" "sha512-xaw5DVbjuT9fbTx+ko/l828LA75zC7H2CJIdRSqMiYmYJjEuNIEb6HHFKUElKn7WmYIF62F2zXe1O8rfP9whgw=="
   "resolved" "https://registry.npmjs.org/firebase/-/firebase-9.13.0.tgz"
   "version" "9.13.0"
@@ -2385,6 +2390,13 @@
     "@firebase/storage" "0.9.13"
     "@firebase/storage-compat" "0.1.21"
     "@firebase/util" "1.7.3"
+
+"firesql@^2.0.2":
+  "integrity" "sha512-3HipSyyJlVTIESHt5OQ0YhCvclm1FV4J2zcPg9I9xpJGjrTn7Gi7tZFniKbgeg1kYS5k5htDvxEQbPfHiHMWBg=="
+  "resolved" "https://registry.npmjs.org/firesql/-/firesql-2.0.2.tgz"
+  "version" "2.0.2"
+  dependencies:
+    "core-js" "^3.0.1"
 
 "flat-cache@^3.0.4":
   "integrity" "sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg=="
@@ -4450,7 +4462,14 @@
   dependencies:
     "queue-microtask" "^1.2.2"
 
-"rxjs@^7.5.5":
+"rxfire@*":
+  "integrity" "sha512-77nkyffHh7jgfi1YA/N9RI+kWxYpgKk6GRML1lyersvaqbJt4hkvWwk1rWib9Rb5Lr5mT+Ha45lu7nM79sJCZA=="
+  "resolved" "https://registry.npmjs.org/rxfire/-/rxfire-6.0.3.tgz"
+  "version" "6.0.3"
+  dependencies:
+    "tslib" "^1.9.0 || ~2.1.0"
+
+"rxjs@*", "rxjs@^6.0.0 || ^7.0.0", "rxjs@^7.5.5":
   "integrity" "sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA=="
   "resolved" "https://registry.npmjs.org/rxjs/-/rxjs-7.5.7.tgz"
   "version" "7.5.7"
@@ -4911,6 +4930,11 @@
   "integrity" "sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"
+
+"tslib@^1.9.0 || ~2.1.0":
+  "integrity" "sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A=="
+  "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz"
+  "version" "2.1.0"
 
 "tslib@^2.0.0", "tslib@^2.1.0", "tslib@^2.4.0":
   "integrity" "sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ=="
