@@ -14,9 +14,9 @@ export default function search() {
    const [lastvalue, setLastvalue] = useState("");
    const [warning, setWarning] = useState(0)
    
-   const [infoSong, getinfosong] = useState();
-   const [infoArtist, getinfoartist] = useState();
-   const [infoAll, getinfoall] = useState();
+   const [infoSong, setInfosong] = useState();
+   const [infoArtist, setInfoartist] = useState();
+   const [infoAll, setInfoall] = useState();
    const [song, getSong] = useState();
 
    //useEffect(() => {
@@ -42,10 +42,10 @@ export default function search() {
       //    Name: e.currentTarget.Name.value
       // }
       const res3= song.filter(searchsongfun=>searchsongfun.NameSong.toLowerCase().includes(content));
-      await getinfosong(res3);
+      await setInfosong(res3);
       //console.log(res3);
       const res4= song.filter(searchsongfun=>searchsongfun.ArtistName.toLowerCase().includes(content));
-      await getinfoartist(res4);
+      await setInfoartist(res4);
 
       function getUnion(array1, array2) {
          const difference = array1.filter(
@@ -55,7 +55,7 @@ export default function search() {
          return [...difference, ...array2];
        }
 
-      await getinfoall(getUnion(res3,res4));
+      await setInfoall(getUnion(res3,res4));
       
 
       //await getinfoall(res3.concat(res4));

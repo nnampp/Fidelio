@@ -2,30 +2,42 @@ import Test from "../components/Test"
 import { Dropdown } from "flowbite-react";
 import logo from "../public/Logo.png"
 import Music from "../components/Music";
+import { useRef, useState } from "react";
+
 
 export default function Home() {
-   const test = [
-      {
-         name: "I love you 3000",
-         artist: "someone",
-         time: "3:46"
-      },
-   
-   ];
+   const audioPlayer = useRef();
+   const [value, setValue] = useState(0);
+   const MAX = 200;
+   const getBackgroundSize = () => {
+      return {
+         backgroundSize: `${(value * 100) / MAX}% 100%`
+      };
+   };
+
+   function play() {
+      // var audio = document.getElementById('a1');
+      // audio.play();
+      audioPlayer.current.play();
+   }
+   function pause() {
+      // var audio = document.getElementById('a1');
+      // audio.play();
+      audioPlayer.current.pause();
+   }
    return (
       <>
-         <img src={logo.src} alt="" className="w-[70px] h-[70px]" />
-         <input type="text" className="bg-[#2C2E47] w-[658px] h-[95px] rounded-[10px] border-[#D6D5E8] border text-[36px] leading-[33px] text-[#FFFFFF] font-League_Spartan font-medium   focus:outline-none" placeholder="What do you want to listen to ?" />
-         <input type="text" className="bg-[#2C2E47]  w-[434px] h-[53px]  border border-gray-400 rounded-[10px] pl-[16px] px-[16px] text-[#FFFFFF] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none focus:outline-[0px] " placeholder="Enter your username" />
-         <input type="text" className="placeholder-gray-500 p-3 m-2 rounded-lg 
-                    border-2 border-gray-400 bg-green-100
-                    focus:outline-none" placeholder="Enter your username" />
-         <input className="placeholder-gray-500 p-3 m-2 rounded-lg 
-                    border-2 border-gray-400 bg-green-100
-                    focus:outline-none" type="text"
-            placeholder="Ouline-none" />
+         <button className=" bg-black text-white w-[70px] h-[30px]" id='a1' onClick={play}>Play</button>
+         <div></div>
+         <button className=" bg-black text-white w-[70px] h-[30px]" id='a1' onClick={pause}>Pause</button>
+         <audio ref={audioPlayer} src="/Time.mp3" id="a1" preload="metadata">Your browser do not support
+         </audio>
+         <div>
 
-         <Music/>
+         </div>
+         <input type="range" min="0" max={MAX} onChange={(e) => setValue(e.target.value)} style={getBackgroundSize()}
+            value={value} className=" sliderWithLabels" id="" />
+         <div className="w-[20px] h-[20px] test"  ></div>
       </>
 
    )

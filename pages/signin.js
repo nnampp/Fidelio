@@ -2,14 +2,20 @@ import img_register from '../public/img_register.png'
 import Link from 'next/link'
 import { parseCookies } from 'nookies'
 import cookie from 'js-cookie'
+import { useState } from "react"
 
 export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
+   const [openSearch, setOpenSearch] = useState(1);
 
    if(tok) {
       history.back();
    }
+  
+   var error
+
+
 
    async function handleSubmit(e) {
       e.preventDefault();
@@ -25,6 +31,7 @@ export default function register() {
       });
       
       const res2 = await res.json();
+      error = res2.error
       if (res2.error) {
          alert(res2.error);
       }
@@ -46,7 +53,7 @@ export default function register() {
                      <div className="basis-[54.67%] bg-[#8957F8] rounded-l-[10px]">
                         <div style={{ backgroundImage: `url(/img_register.png)` }} className="bg-cover w-full h-full">
                            <div className='flex flex-col justify-end px-[30px] pb-[40px] w-full h-full'>
-                              <div className="text-[65px] font-Commissioner font-bold text-[#FFFFFF]">FIDELIO</div>
+                              <div className="text-[65px] font-Commissioner font-bold text-[#FFFFFF]">FIDELIO{error}</div>
                               <p className="text-[15px] font-Commissioner font-semibold text-[#FFFFFF]">A web app that enhances the listening experience of the deaf people.</p>
                            </div>
                         </div>
@@ -58,12 +65,23 @@ export default function register() {
                            <div className='font-Commissioner font-normal text-[#FFFFFF] mb-[40px]'>Welcome ! Let's log in before to the website.</div>
                            <div className='flex flex-col items-start gap-[8px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Username</label>
-                              <input type="text" id="userlogin" name="userlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your username" required />
+                             
+                               {/*<label htmlFor="" className={`${openSearch ? " text-[#FA3939] " : " text-[#FFFFFF] " } font-Commissioner text-[14px] font-normal  ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500 `}>Username</label>*/}
+                           
+                              
+                              {/*<input type="text" id="userlogin" name="userlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your username" required />*/}
+                             
+                              <input type="text" id="userlogin" name="userlogin" className={`${openSearch ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your username" required />                              
+                              
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
                            <div className='flex flex-col items-start gap-[8px] mb-[51px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>
-                              <input type="password" id="passlogin" name="passlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your Password" required />
+                             {/*} <input type="password" id="passlogin" name="passlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#FA3939] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your Password" required />*/}
+
+                              <input type="password" id="passlogin" name="passlogin" className={`${openSearch ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `}  placeholder="Enter your Password" required />
+
+                             
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
 
