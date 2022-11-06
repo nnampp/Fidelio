@@ -36,8 +36,7 @@ export default function register() {
       const res2 = await res.json();
       if (res2.error) {
             focus(res2.error);
-      }
-      else {
+      } else {
             alert(res2.message);
           window.location = '/signin';
       } 
@@ -50,7 +49,7 @@ export default function register() {
       } else {
          setWarning(0);
 
-         {/*Get API of All*/ }
+      {/*Get API of All*/ }
 
          setNotification(1);
       }
@@ -59,23 +58,23 @@ export default function register() {
       if (content.length == 0) {
          setWarning(1);
       } else {
-         setWarning(0);
+          setWarning(0);
 
-         {/*Get API of All*/ }
+          {/*Get API of All*/ }
 
-         setNotification(1);
+          setNotification(1);
       }
    }
-   const inputFullName = () => {
+   const inputFullname = () => {
       if (content.length == 0) {
-         setWarning(1);
-      } else {
+          setWarning(1);
+       } else {
          setWarning(0);
 
-         {/*Get API of All*/ }
+          {/*Get API of All*/ }
 
          setNotification(1);
-      }
+       }
    }
    const inputEmail = () => {
       if (content.length == 0) {
@@ -90,14 +89,14 @@ export default function register() {
    }
    const inputPhoneNumber = () => {
       if (content.length == 0) {
-         setWarning(1);
-      } else {
+          setWarning(1);
+       } else {
          setWarning(0);
 
-         {/*Get API of All*/ }
+          {/*Get API of All*/ }
 
          setNotification(1);
-      }
+       }
    }
    const buttonSubmit = () => {
       if (content.length == 0) {
@@ -118,7 +117,7 @@ export default function register() {
 
          {/*Get API of All*/ }
 
-         setNotification(1);
+          setNotification(1);
       }
    }
 
@@ -158,18 +157,18 @@ export default function register() {
                            <div className='w-[427px] h-[1px] bg-[#6D7097] mb-[24px]'></div>
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Username</label>
-                              <input type="text" id="username" name="username" className={`${inputUsername ? "border-[#D6D5E8]" : "border-[#FA3939]"}" bg-[#2C2E47]  w-[445px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your username" required />
+                              <input type="text" id="username" name="username" className={`${inputUsername ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[445px] h-[56px] border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your username" required />
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>
-                              <input type="password" id="password" name="password" className={`${inputPassword ? "border-[#D6D5E8]" : "border-[#FA3939]"}" bg-[#2C2E47]  w-[445px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your Password" required />
+                              <input type="text" id="password" name="password" className={`${inputPassword ? "border-[#D6D5E8]" : "border-[#FA3939]"} bg-[#2C2E47]  w-[445px] h-[56px] border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your password" required />
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
 
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Full name</label>
-                              <input type="text" id="fullname" name="fullname" className={`${inputFullName ? "border-[#D6D5E8]" : "border-[#FA3939]"}" bg-[#2C2E47]  w-[445px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your Full name" required />
+                              <input type="text" id="fullname" name="fullname" className={`${inputFullname ? "border-[#D6D5E8]" : "border-[#FA3939]"} bg-[#2C2E47]  w-[445px] h-[56px] border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your full name" required />
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
 
@@ -186,15 +185,15 @@ export default function register() {
                            <div className='flex flex-row gap-[7px] mb-[37px]'>
                               <div className='flex flex-col items-start gap-[4px] '>
                                  <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Email</label>
-                                 <input type="text" id="email" name="email" className={`${inputEmail ? "border-[#D6D5E8]" : "border-[#FA3939]"}" bg-[#2C2E47]  w-[220px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your e-mail" required />
+                                 <input type="text" id="email" name="email" className={`${inputEmail ? "border-[#D6D5E8]" : "border-[#FA3939]"} bg-[#2C2E47]  w-[220px] h-[56px] border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your e-mail" required />
                               </div>
                               <div className='flex flex-col items-start gap-[4px] '>
                                  <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Phone Number</label>
-                                 <input type="text" id="phonenumber" name="phonenumber" className={`${inputPhoneNumber ? "border-[#D6D5E8]" : "border-[#FA3939]"}" bg-[#2C2E47]  w-[220px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your phone number" required />
+                                 <input type="text" id="phonenumber" name="phonenumber" className={`${inputPhoneNumber ? "border-[#D6D5E8]" : "border-[#FA3939]"} bg-[#2C2E47]  w-[220px] h-[56px] border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your phone number" required />
                               </div>
                            </div>
 
-                           <div className={`${warning ? "" : "hidden" } `}>
+                           <div className={`${warning ? "hidden" : "" } `}>
                               {showWarnFind()}
                            </div>
 
