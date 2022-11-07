@@ -8,19 +8,39 @@ import notificationimg from "../public/notificationimg.png"
 export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
-   const [openSearch, setOpenSearch] = useState(1);
-   const [warning, setWarning] = useState(0)
-
-  
-
-
+   const [OpenSearch,setOpenSearch] = useState(1); //for red box
+   const [username , setWarningUsername] = useState(1) 
+   const [password ,setWarningPassword] = useState(0)
+   const [warning, setWarning] = useState(1) //for below warning
+   
    if(tok) {
       history.back();
    }
   
    var error
 
+   const inputUsername = () => {
+      if (content.length == 0) {
+         setOpenSearch(1);
+      } else {
+         setWarningUsername(0);
 
+      {/*Get API of All*/ }
+
+         notificationimg(1);
+      }
+   }
+   const inputPassword = () => {
+      if (content.length == 0) {
+         setOpenSearch(1);
+      } else {
+         setWarningPassword(0);
+
+          {/*Get API of All*/ }
+
+         notificationimg(1);
+      }
+   }
 
    async function handleSubmit(e) {
       e.preventDefault();
@@ -48,7 +68,7 @@ export default function register() {
          window.location = '/home';
       } 
    }
-   const showWarnFind = () => {
+   const showWarningall = () => {
       return (
          <>
             <div className='flex flex-row gap-[6px] mb-[10px] '>
@@ -57,6 +77,34 @@ export default function register() {
                </div>
                <div className='flex flex-col items-center w-full h-full'>
                   <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This Username and Password are wrong. Please try another.</p>
+               </div>
+            </div>
+         </>
+      )
+   }
+   const showWarningpassword = () => {
+      return (
+         <>
+            <div className='flex flex-row gap-[6px] mb-[10px] '>
+               <div className='flex flex-col items-center w-full h-full'>
+                  <img src={notificationimg.src} alt="" className="w-[10px] h-[10px]" /> 
+               </div>
+               <div className='flex flex-col items-center w-full h-full'>
+                  <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This Username is wrong. Please try another.</p>
+               </div>
+            </div>
+         </>
+      )
+   }
+   const showWarningusername = () => {
+      return (
+         <>
+            <div className='flex flex-row gap-[6px] mb-[10px] '>
+               <div className='flex flex-col items-center w-full h-full'>
+                  <img src={notificationimg.src} alt="" className="w-[10px] h-[10px]" /> 
+               </div>
+               <div className='flex flex-col items-center w-full h-full'>
+                  <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This Password is wrong. Please try another.</p>
                </div>
             </div>
          </>
@@ -90,7 +138,7 @@ export default function register() {
                               
                               {/*<input type="text" id="userlogin" name="userlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your username" required />*/}
                              
-                              <input type="text" id="userlogin" name="userlogin" className={`${openSearch ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your username" required />                              
+                              <input type="text" id="userlogin" name="userlogin" className={`${username? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your username" required />                              
                               
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
@@ -98,16 +146,21 @@ export default function register() {
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>
                              {/*} <input type="password" id="passlogin" name="passlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#FA3939] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your Password" required />*/}
 
-                              <input type="password" id="passlogin" name="passlogin" className={`${openSearch ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `}  placeholder="Enter your Password" required />
+                              <input type="password" id="passlogin" name="passlogin" className={`${password ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `}  placeholder="Enter your Password" required />
 
                              
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
 
                            <div className={`${warning ? "hidden" : "" } `}>
-                              {showWarnFind()}
-
+                              {showWarningall ()}
                            </div>
+                           <div className={`${username  ? "hidden" : "" } `}>
+                              {showWarningusername ()}
+                           </div><div className={`${password ? "hidden" : "" } `}>
+                              {showWarningpassword ()}
+                           </div>
+
                            <button type="submit" className="w-[170px] h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-bold font-League_Spartan bg-gradient-to-r from-[#723AE8] via-[#6763CE] to-[#7BB2E5] mb-[44px] focus:ring focus:ring-[#5D37AC]" >Login</button>
                            <div className="font-League_Spartan text-[#696F79]">I don't have an account? <Link href="/register"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Register</u></span></Link>  </div>
                         </div>
