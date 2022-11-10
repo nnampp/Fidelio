@@ -14,7 +14,7 @@ export default function Import() {
          Role: "Admin"
       };
       
-      const res = await fetch('/imports', {
+      const res = await fetch('http://127.0.0.1:5000/reciever', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
          data: JSON.stringify(data)
