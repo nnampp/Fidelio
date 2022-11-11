@@ -8,11 +8,10 @@ import notificationimg from "../public/notificationimg.png"
 export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
-   const [content, setContent] = useState("");
    const [inputUsername , setWarningUsername] = useState(0)
    const [inputPassword ,setWarningPassword] = useState(1)
-   const [inputEmail , setWarningEmail] = useState(0)
-   const [inputPhoneNumber ,setWarningPhoneNumber] = useState(0)
+   const [inputEmail , setWarningEmail] = useState(1)
+   const [inputPhoneNumber ,setWarningPhoneNumber] = useState(1)
 
    if(tok) {
       history.back();
