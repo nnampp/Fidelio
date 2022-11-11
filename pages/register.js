@@ -75,7 +75,7 @@ export default function register() {
    const showWarnEmail = () => {
       return (
          <>
-            <div className='flex flex-row gap-[6px] mb-[10px] '>
+            <div className='flex flex-row gap-[6px] mb-[10px] ml-[10px]'>
                <div className='flex flex-col items-center w-full h-full'>
                   <img src={notificationimg.src} alt="" className="w-[11px] h-[11px]" /> 
                </div>
@@ -89,7 +89,7 @@ export default function register() {
    const showWarnPhoneNumber = () => {
       return (
          <>
-            <div className='flex flex-row gap-[6px] mb-[10px] '>
+            <div className='flex flex-row gap-[6px] mb-[10px] ml-[10px]'>
                <div className='flex flex-col items-center w-full h-full'>
                   <img src={notificationimg.src} alt="" className="w-[11px] h-[11px]" /> 
                </div>
