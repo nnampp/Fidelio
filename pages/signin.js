@@ -8,10 +8,10 @@ import notificationimg from "../public/notificationimg.png"
 export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
-   const [OpenSearch,setOpenSearch] = useState(1); //for red box
-   const [username , setWarningUsername] = useState(1) 
-   const [password ,setWarningPassword] = useState(0)
-   const [warning, setWarning] = useState(1) //for below warning
+   const [OpenSearch,setOpenSearch] = useState(0); //for red box
+   const [username , setWarningUsername] = useState(0) 
+   const [password ,setWarningPassword] = useState(1)
+   const [warning, setWarning] = useState(0) //for below warning
    
    if(tok) {
       history.back();
@@ -68,43 +68,32 @@ export default function register() {
          window.location = '/home';
       } 
    }
-   const showWarningall = () => {
-      return (
-         <>
-            <div className='flex flex-row gap-[6px] mb-[10px] '>
-               <div className='flex flex-col items-center w-full h-full'>
-                  <img src={notificationimg.src} alt="" className="w-[10px] h-[10px]" /> 
-               </div>
-               <div className='flex flex-col items-center w-full h-full'>
-                  <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This Username and Password are wrong. Please try another.</p>
-               </div>
-            </div>
-         </>
-      )
-   }
+ 
    const showWarningpassword = () => {
       return (
          <>
-            <div className='flex flex-row gap-[6px] mb-[10px] '>
+       
+            <div className='flex flex-row gap-[6px] mb-[21px] ml-[-80px]'>
                <div className='flex flex-col items-center w-full h-full'>
-                  <img src={notificationimg.src} alt="" className="w-[10px] h-[10px]" /> 
+                  <img src={notificationimg.src} alt="" className="w-[10px] h-[10px] " /> 
                </div>
                <div className='flex flex-col items-center w-full h-full'>
-                  <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This Username is wrong. Please try another.</p>
+                  <p className="text-[10px] w-[220px]  font-Commissioner font-normal text-[#DC1414]">Enter a valid username. Please try again.</p>
                </div>
             </div>
+           
          </>
       )
    }
    const showWarningusername = () => {
       return (
          <>
-            <div className='flex flex-row gap-[6px] mb-[10px] '>
+             <div className='flex flex-row gap-[6px] mb-[21px] ml-[-80px]'>
                <div className='flex flex-col items-center w-full h-full'>
-                  <img src={notificationimg.src} alt="" className="w-[10px] h-[10px]" /> 
+                  <img src={notificationimg.src} alt="" className="w-[10px] h-[10px] " /> 
                </div>
                <div className='flex flex-col items-center w-full h-full'>
-                  <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This Password is wrong. Please try another.</p>
+                  <p className="text-[10px] w-[220px]  font-Commissioner font-normal text-[#DC1414]">Wrong password</p>
                </div>
             </div>
          </>
@@ -142,7 +131,7 @@ export default function register() {
                               
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
-                           <div className='flex flex-col items-start gap-[8px] mb-[51px]'>
+                           <div className='flex flex-col items-start gap-[8px] mb-[51px]  h-[40px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>
                              {/*} <input type="password" id="passlogin" name="passlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#FA3939] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your Password" required />*/}
 
@@ -152,9 +141,7 @@ export default function register() {
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
 
-                           <div className={`${warning ? "hidden" : "" } `}>
-                              {showWarningall ()}
-                           </div>
+                           
                            <div className={`${username  ? "hidden" : "" } `}>
                               {showWarningusername ()}
                            </div><div className={`${password ? "hidden" : "" } `}>
