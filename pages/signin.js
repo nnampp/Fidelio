@@ -9,8 +9,8 @@ export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
    const [OpenSearch,setOpenSearch] = useState(0); //for red box
-   const [username , setWarningUsername] = useState(1) 
-   const [password ,setWarningPassword] = useState(0)
+   const [username , setWarningUsername] = useState(0) 
+   const [password ,setWarningPassword] = useState(1)
    const [warning, setWarning] = useState(0) //for below warning
    
    if(tok) {
