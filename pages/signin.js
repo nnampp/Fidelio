@@ -9,7 +9,7 @@ export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
    const [OpenSearch,setOpenSearch] = useState(0); //for red box
-   const [username , setWarningUsername] = useState(0) 
+   const [username , setWarningUsername] = useState(1) 
    const [password ,setWarningPassword] = useState(1)
    const [warning, setWarning] = useState(0) //for below warning
    
@@ -18,29 +18,6 @@ export default function register() {
    }
   
    var error
-
-   const inputUsername = () => {
-      if (content.length == 0) {
-         setOpenSearch(1);
-      } else {
-         setWarningUsername(0);
-
-      {/*Get API of All*/ }
-
-         notificationimg(1);
-      }
-   }
-   const inputPassword = () => {
-      if (content.length == 0) {
-         setOpenSearch(1);
-      } else {
-         setWarningPassword(0);
-
-          {/*Get API of All*/ }
-
-         notificationimg(1);
-      }
-   }
 
    async function handleSubmit(e) {
       e.preventDefault();
@@ -69,7 +46,7 @@ export default function register() {
       } 
    }
  
-   const showWarningpassword = () => {
+   const showWarningusername = () => {
       return (
          <>
        
@@ -85,7 +62,7 @@ export default function register() {
          </>
       )
    }
-   const showWarningusername = () => {
+   const showWarningpassword = () => {
       return (
          <>
              <div className='flex flex-row gap-[6px] mb-[21px] ml-[-80px]'>
@@ -142,12 +119,13 @@ export default function register() {
                            </div>
 
                            
-                           <div className={`${username  ? "hidden" : "" } `}>
+                           <div className={`${username  ? "" : "hidden" } `}>
                               {showWarningusername ()}
-                           </div><div className={`${password ? "hidden" : "" } `}>
+                           </div>
+                           <div className={`${password ? "" : "hidden" } `}>
                               {showWarningpassword ()}
                            </div>
-
+                           
                            <button type="submit" className="w-[170px] h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-bold font-League_Spartan bg-gradient-to-r from-[#723AE8] via-[#6763CE] to-[#7BB2E5] mb-[44px] focus:ring focus:ring-[#5D37AC]" >Login</button>
                            <div className="font-League_Spartan text-[#696F79]">I don't have an account? <Link href="/register"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Register</u></span></Link>  </div>
                         </div>
