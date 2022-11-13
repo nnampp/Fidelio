@@ -10,7 +10,7 @@ export default function register() {
    const tok = cookieuser.token;
    const [OpenSearch,setOpenSearch] = useState(0); //for red box
    const [username , setWarningUsername] = useState(0) 
-   const [password ,setWarningPassword] = useState(1)
+   const [password ,setWarningPassword] = useState(0)
    const [warning, setWarning] = useState(0) //for below warning
    
    if(tok) {
@@ -56,15 +56,21 @@ export default function register() {
       });
       
       const res2 = await res.json();
+      
       error = res2.error
-      if (res2.error) {
-         alert(res2.error);
+      if (res2.error1) {
+         //alert(res2.error1);
+         setWarningUsername(1);
+      }
+      else if (res2.error) {
+         //alert(res2.error);
+         setWarningPassword(1);
       }
       else {
          cookie.set('token',res2.token);
          cookie.set('user',JSON.stringify(res2.user));
          //console.log(res2.user);
-         alert(res2.message);
+         //alert(res2.message);
          window.location = '/home';
       } 
    }
