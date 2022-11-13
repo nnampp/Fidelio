@@ -8,7 +8,7 @@ import notificationimg from "../public/notificationimg.png"
 export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
-   const [inputUsername , setWarningUsername] = useState(1)
+   const [inputUsername , setWarningUsername] = useState(0)
    const [inputPassword ,setWarningPassword] = useState(0)
    const [inputEmail , setWarningEmail] = useState(0)
    const [inputPhoneNumber ,setWarningPhoneNumber] = useState(0)
@@ -35,11 +35,32 @@ export default function register() {
       });
       
       const res2 = await res.json();
-      if (res2.error) {
-            focus(res2.error);
-      } else {
-            alert(res2.message);
-          window.location = '/signin';
+      if (res2.usererror) {
+         setWarningUsername(1);
+      }
+      else if (res2.passworderror) {
+            //focus(res2.error);
+            //alert(res2.error);
+         setWarningUsername(0);
+         setWarningUsername(0);
+         setWarningPassword(1);
+      } 
+      else if (res2.mailerror) {
+         setWarningUsername(0);
+         setWarningUsername(0);
+         setWarningPassword(0);
+         setWarningEmail(1);
+      }
+      else if (res2.phoneerror) {
+         setWarningUsername(0);
+         setWarningUsername(0);
+         setWarningPassword(0);
+         setWarningEmail(0);
+         setWarningPhoneNumber(1);
+      }
+      else {
+         //alert(res2.message);
+         window.location = '/signin';
       } 
    }
 

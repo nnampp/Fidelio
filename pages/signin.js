@@ -41,6 +41,7 @@ export default function register() {
       }
       else if (res2.error) {
          //alert(res2.error);
+         setWarningUsername(0);
          setWarningPassword(1);
       }
       else {
