@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         return res.status(422).json({ usererror: "Can't use this username" })
     }
 
-    var passwordformat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}$/;
+    var passwordformat = /^(?=.*\d)(?=.*[a-z]).{8,50}$/;
     if(!Password.match(passwordformat)){
         return res.status(422).json({ passworderror: "Password is not valid" })
     }
