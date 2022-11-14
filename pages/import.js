@@ -7,25 +7,24 @@ export default function Import() {
    async function handleSubmit(e) {
       e.preventDefault();
 
-      const data = {
+      const body = {
          Link: e.currentTarget.link.value,
          Songname: e.currentTarget.songname.value,
          Artist: e.currentTarget.artist.value,
          Role: "Admin"
       };
-      
-      const res = await fetch('http://127.0.0.1:5000/reciever', {
+
+      const res = await fetch('http://127.0.0.1:3000/reciever', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
-         data: JSON.stringify(data)
+         body: JSON.stringify(body)
       });
 
       const res2 = await res.json();
       console.log(res2);
-      
-      const dict_values = (body)
-      const s = JSON.stringify(dict_values);
-      console.log(s)
+
+      alert(res2.message)
+      window.location = '/import';
    } 
 
    return (

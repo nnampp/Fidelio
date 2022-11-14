@@ -1,24 +1,5 @@
-# from flask import Flask,request, jsonify
-# import os
-# # from flask_cors import CORS
-
-# app = Flask(__name__)
-# # CORS(app)
-
-# @app.route('/reciever', methods=["GET"])
-# def importSong():
-#     data = "CRAVITY"   
-#     os.system("python Bootsbase/boostbase_function.py")
-#     return data
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
-#####################################################################################################
-#####################################################################################################
-#####################################################################################################
-
-from flask import Flask,request, jsonify
+from flask import Flask,request, make_response, jsonify
+from flask_cors import CORS,cross_origin
 import os
 # from flask_cors import CORS
 from fileinput import filename
@@ -31,20 +12,31 @@ import os
 import glob
 import datetime
 # เอาไฟล์ลงดาต้าเบส
-### import pyrebase
+import pyrebase
 import firebase_admin
 from firebase_admin import firestore
 from firebase_admin import storage
 from firebase_admin import credentials
 
 app = Flask(__name__)
-# CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
-@app.route('/reciever', methods=["GET"])
+@app.route('/reciever', methods=["GET","POST"])
+@cross_origin()
 def importSong():
-    data = "CRAVITY"   
-    cred = credentials.Certificate("Bootsbase\\fidelio-a5340-firebase-adminsdk-l14hw-bbf8c866d3.json") # past key
-    firebase_admin.initialize_app(cred)
+
+    data = request.get_json()
+    Link = data['Link']
+    NameSong = data['Songname'] 
+    ArtistName = data['Artist']
+
+    try:
+        app = firebase_admin.get_app()
+    except ValueError as e:
+        cred = credentials.Certificate("Bootsbase\\fidelio-a5340-firebase-adminsdk-l14hw-bbf8c866d3.json") # past key
+        firebase_admin.initialize_app(cred, {
+        'storageBucket': 'gs://fidelio-a5340.appspot.com'
+        })
 
     config = {
         "apiKey": "AIzaSyCrqd-SqgXVmyjCW2ExVCzJ-YH-E274bv8",
@@ -56,12 +48,12 @@ def importSong():
         "appId": "1:166063536125:web:b439a508e7ef61481a0b94"
     }
 
-    ### firebase = pyrebase.initialize_app(config)
+    firebase = pyrebase.initialize_app(config)
 
     db = firestore.client()
-    ### storage = firebase.storage()
+    storage = firebase.storage()
 
-    link ="https://youtu.be/W42btIESAJo" #ลิ้งค์ ที่จะได้มาจากหน้าเว็บ
+    link = Link or "https://youtu.be/W42btIESAJo" #ลิ้งค์ ที่จะได้มาจากหน้าเว็บ
     try:
         yt = YouTube(link)
     except:
@@ -79,9 +71,9 @@ def importSong():
     attenuate_db = 50
     accentuate_db = 50
 
-    artist = 'KLEAR x TILLY BIRDS' #ชื่อศิลปิน
-    name = data #ชื่อเพลงที่จะมาจาก หน้าเว็บที่กรอก ***********************************************************
-    path_on_cloud = "songgithup/"+ name +".mp3"
+    artist = ArtistName or "artist_temp"
+    name = NameSong or "name_temp"
+    path_on_cloud = "song/"+ artist + "_" + name +".mp3"
 
     def bass_line_freq(track):
         sample_track = list(track)
@@ -118,9 +110,9 @@ def importSong():
 
     combined = (sample - attenuate_db).overlay(filtered + accentuate_db)
     path_local = combined.export(format="mp3") 
-    ### storage.child(path_on_cloud).put(path_local) #export ขึ้น storage
+    storage.child(path_on_cloud).put(path_local) #export ขึ้น storage
 
-    doc_ref = db.collection(u'Song Boots').document(name)
+    doc_ref = db.collection(u'Song').document(name)
     doc_ref.set({
         u'Name': name,
         u'Artist': artist,
@@ -129,7 +121,8 @@ def importSong():
     })
 
     print("Boots")
-    return data
+
+    return make_response(jsonify(message = "Successful !!!"), 200)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='localhost', port=3000,debug=True)
