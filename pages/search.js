@@ -175,8 +175,8 @@ export default function search() {
             <div className="mx-auto max-w-screen-xl">
                <Navbar />
                <div className="w-full h-screen bg-gradient-to-b from-[#000000] via-[#100526] to-[#1C0943] rounded-[10px]">
-                  {/* <div className={`flex flex-col ${openSearch ? "pt-[152px]" : "justify-center"} items-center h-full`}> */}
-                     <div className={`${openSearch ? "hidden" : ""} font-League_Spartan font-bold text-[#FFFFFF] text-[64px] leading-[59px] mb-[88px]`}>Search</div> {/*${ openSearch ? "-translate-y-20 opacity-0 duration-700 ease-in-out" : ""} */}
+                     <div className={`flex flex-col ${openSearch ? "pt-[152px]" : "justify-center"} items-center h-full`}>
+                     <div className={`${openSearch ? "hidden" : ""} font-League_Spartan font-bold text-[#FFFFFF] text-[64px] leading-[59px] mb-[88px]`}>Search</div> ${ openSearch ? "-translate-y-20 opacity-0 duration-700 ease-in-out" : ""} 
                      <div className="relative">
                         <img src={icon_search_white.src} alt="" className={`${showicon ? "hidden" : ""} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
                         <img src={icon_search_black.src} alt="" className={`${showicon ? "" : "hidden"} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
@@ -196,7 +196,7 @@ export default function search() {
                      <div className={`${openSearch ? "block" : "hidden"} w-full h-full overflow-y-scroll scrollbar scrollbar-width-2`}>
                         {showMusic()}
                      </div>     
-                  {/* </div> */}
+                  </div>
                </div>
             </div>
          </div>

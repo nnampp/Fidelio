@@ -10,7 +10,7 @@ export default function register() {
    const tok = cookieuser.token;
    const [OpenSearch,setOpenSearch] = useState(1); //for red box
    const [username , setWarningUsername] = useState(0) 
-   const [password ,setWarningPassword] = useState(1)
+   const [password ,setWarningPassword] = useState(0)
    const [warning, setWarning] = useState(0) //for below warning
    
    if(tok) {
@@ -18,29 +18,6 @@ export default function register() {
    }
   
    var error
-
-   const inputUsername = () => {
-      if (content.length == 0) {
-         setOpenSearch(1);
-      } else {
-         setWarningUsername(0);
-
-      {/*Get API of All*/ }
-
-         notificationimg(1);
-      }
-   }
-   const inputPassword = () => {
-      if (content.length == 0) {
-         setOpenSearch(1);
-      } else {
-         setWarningPassword(0);
-
-          {/*Get API of All*/ }
-
-         notificationimg(1);
-      }
-   }
 
    async function handleSubmit(e) {
       e.preventDefault();
@@ -56,20 +33,27 @@ export default function register() {
       });
       
       const res2 = await res.json();
+      
       error = res2.error
-      if (res2.error) {
-         alert(res2.error);
+      if (res2.error1) {
+         //alert(res2.error1);
+         setWarningUsername(1);
+      }
+      else if (res2.error) {
+         //alert(res2.error);
+         setWarningUsername(0);
+         setWarningPassword(1);
       }
       else {
          cookie.set('token',res2.token);
          cookie.set('user',JSON.stringify(res2.user));
          //console.log(res2.user);
-         alert(res2.message);
+         //alert(res2.message);
          window.location = '/home';
       } 
    }
  
-   const showWarningpassword = () => {
+   const showWarningusername = () => {
       return (
          <>
        
@@ -85,7 +69,7 @@ export default function register() {
          </>
       )
    }
-   const showWarningusername = () => {
+   const showWarningpassword = () => {
       return (
          <>
              <div className='flex flex-row gap-[6px] mb-[21px] ml-[-80px]'>
@@ -136,21 +120,23 @@ export default function register() {
                              {/*} <input type="password" id="passlogin" name="passlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#FA3939] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your Password" required />*/}
 
                               <input type="password" id="passlogin" name="passlogin" className={`${password ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `}  placeholder="Enter your Password" required />
-
+                              
                              
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
 
                            
-                           <div className={`${username  ? "hidden" : "" } `}>
+                           <div className={`${username  ? "" : "hidden" } `}>
                               {showWarningusername ()}
-                           </div><div className={`${password ? "hidden" : "" } `}>
+                           </div>
+                           <div className={`${password ? "" : "hidden" } `}>
                               {showWarningpassword ()}
                            </div>
-                        <div classname = "" >
+                           <div classname = "" >
                            <button type="submit" className="w-[170px] h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF]  font-bold font-League_Spartan bg-gradient-to-r from-[#723AE8] via-[#6763CE] to-[#7BB2E5] mt-[20px] focus:ring focus:ring-[#5D37AC]" >Login</button>
                            </div>
                            <div className="font-League_Spartan text-[#696F79] mt-[35px]">I don't have an account? <Link href="/register"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Register</u></span></Link>  </div>
+
                         </div>
                         </form>
                      </div>

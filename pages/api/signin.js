@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     else {
         res.json({
             status: false,
-            error: "Enter a valid username. Please try again."
+            error1: "Enter a valid username. Please try again."
         })
     }
   }
