@@ -11,7 +11,7 @@ import logo from "../public/Logo.png"
 import Link from 'next/link'
 import door from "../public/icon_door.svg"
 
-export default function Navbar() {
+export default function NavbarAdmin() {
    const [showLogout, setShowLogout] = useState(0);
    const [name, setName] = useState('');
    const [username, setUsername] = useState('');
