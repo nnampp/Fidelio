@@ -1,4 +1,4 @@
-import NavbarAdmin from "../components/NavbarAdmin"
+import Navbar from "../components/Navbar"
 import Music from "../components/Music";
 import { useState, useEffect } from "react";
 const test = [
@@ -39,7 +39,7 @@ export default function home() {
          <div className="bg-[#2D106A] h-screen overflow-hidden">
             <div className="mx-auto max-w-screen-xl">
                <div className="w-full h-screen bg-gradient-to-b from-[#000000] via-[#100526] to-[#1C0943] rounded-[10px]">
-                  <NavbarAdmin />
+                  <Navbar />
                   <div className="overflow-y-scroll h-screen mt-[101px] scrollbar scrollbar-width-2"> {/* part Song */}
                      { showSong() }
                      <Music/>
