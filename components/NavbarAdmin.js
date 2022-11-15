@@ -4,7 +4,7 @@ import { parseCookies } from 'nookies'
 import { useRouter } from 'next/router'
 import cookie from 'js-cookie'
 import icon_home from '../public/icon_home.svg'
-import icon_import from '../public/icon_import.png'
+import icon_search from '../public/icon_search.svg'
 import arrow_down from '../public/arrow_down.svg'
 import arrow_up from '../public/arrow_up.svg'
 import logo from "../public/Logo.png"
@@ -43,22 +43,22 @@ export default function NavbarAdmin() {
       <>
          <div className="fixed top-0 w-full bg-[#000000] h-[99px] z-10 max-w-screen-xl mx-auto">
             <div className="flex flex-row justify-between items-center h-full">
-               <Link href="/home" >
+               <Link href="/import" >
                   <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">
                   <img src={logo.src} alt="" className=" h-[70px] ml-[45px]" />
                   </div>
                </Link>
                <div className="flex flex-row gap-[23px]">
-                  <Link href="/home" >
+                  <Link href="/import" >
                      <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">
                         <img src={icon_home.src} alt="icon home" className="w-[35px] h-[35px]" />
                         <div className=" font-League_Spartan text-[40px] text-[#FFFFFF] font-bold leading-[37px]">Home</div>
                      </div>
                   </Link>
-                  <Link href="/import" >
+                  <Link href="/search" >
                      <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">
-                        <img src={icon_import.src} alt="icon import" className="w-[30px] h-[30px]" />
-                        <div className="cursor-pointer font-League_Spartan text-[40px] text-[#FFFFFF] font-bold leading-[37px]">Import</div>
+                        <img src={icon_search.src} alt="icon import" className="w-[26px] h-[25px]" />
+                        <div className="cursor-pointer font-League_Spartan text-[40px] text-[#FFFFFF] font-bold leading-[37px]">Search</div>
                      </div>
                   </Link>
                </div>
