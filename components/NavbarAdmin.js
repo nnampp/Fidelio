@@ -68,7 +68,7 @@ export default function NavbarAdmin() {
                         <Popover.Button className={`relative rounded-[30px] bg-[#1C1C1C] w-[128px] h-[61px] border-2 border-[#585757] hover:bg-[#585757] focus:outline-none`}>
                            <div className='absolute -left-[1px] top-0'>
                               <div className="rounded-[30px] overflow-hidden w-[60px] h-[60px]">
-                                 <div style={{ backgroundImage: `url(/profiles/Cat-profile.png)` }} className="bg-cover w-full h-full bg-center"></div>
+                                 <div style={{ backgroundImage: `url(/profile/Cat-profile.png)` }} className="bg-cover w-full h-full bg-center"></div>
                               </div>
                            </div>
                            <div className="absolute top-[24px] right-[21px]  w-[17px] h-[10px]">

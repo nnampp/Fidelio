@@ -1,3 +1,4 @@
+import NavbarAdmin from "../components/NavbarAdmin"
 import React from 'react'
 import headphone from '../public/headphone.png'
 import guitar from '../public/guitar.png'
@@ -31,6 +32,7 @@ export default function Import() {
       <>
          <div className="w-full h-screen bg-black ">
             <div className=" max-w-screen-xl mx-auto w-full h-screen bg-center bg-cover" style={{ backgroundImage: `url(/bg-import.png)` }}>
+               <NavbarAdmin />
                <div className="flex flex-row items-center h-full ">
                   <div className="w-full relative">
                      <div className="absolute top-[97px] left-[0px]">
