@@ -28,30 +28,22 @@ export default function Listentosong() {
 
 
    useEffect(() => {
-      // alert("test");
       const getInitialProps = async () => {
-         // const res = await axios.get('https://pixabay.com/api/videos/?key=31122990-29c4c67fa1bea010fa87f62df&q=flower+yellow');
          try {
-            // const res = await fetch(`https://jsonplaceholder.typicode.com/posts/1`);
-            // const data = await res.json();
             const res = await axios.get('https://pixabay.com/api/videos/?key=31122990-29c4c67fa1bea010fa87f62df&q=flower+yellow');
-            // console.log(res.data);
-            setNewdata(res.data)
+            setNewdata(res.data);
          } catch (err) {
             console.log(err);
          }
-         
-         // console.log(newdata);
       };
-      const seconds = Math.floor(audioPlayer.current.duration)
-      setDuaration(seconds);
-      console.log()
       getInitialProps();
 
+      
 
-      // audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState
    }, [])
 
+
+   // audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState
    // adding "?" to say if autdioPlay exists, if current exists
    // We will update (call function in useEffect again) when loadmetadata 
    // The loadedmetadata event occurs when metadata for the specified audio/video has been loaded
@@ -123,9 +115,10 @@ export default function Listentosong() {
       audioPlayer.current.currentTime = newTime;
    }
 
-   const abc = () => {
-      // console.log(newdata?.hits[0]?.videos?.small?.url);
-      // console.log(newdata.total);
+   const setUpAudio = () => {
+      const seconds =  audioPlayer?.current?.duration;
+      setDuaration(seconds);
+      // console.log(newdata?.hits[0]?.videos?.small?.url)
    }
 
    return (
@@ -177,13 +170,13 @@ export default function Listentosong() {
                            </div>
 
                            {/* <audio ref={audioPlayer} src="/Time.mp3" id="a1" onTimeUpdate={whenUpdate}>Your browser do not support</audio> */}
-                           <audio ref={audioPlayer} src="https://cdn.pixabay.com/vimeo/328940142/Buttercups%20-%2022634.mp4?width=3840&hash=973e1bca2a1cd997686a408cf73a9256ae0a9cad" id="a1" onTimeUpdate={whenUpdate}>Your browser do not support</audio>
-                           {
-                              // console.log(newdata.hits[0].videos.small.url)
-                              // console.log(newdata.total);
-                              abc()
-
-                           }
+                           <audio ref={audioPlayer}
+                              src={newdata?.hits[0]?.videos?.small?.url}
+                              id="a1"
+                              onTimeUpdate={whenUpdate}
+                              onLoadedData={setUpAudio}>
+                              Your browser do not support
+                           </audio>
                         </div>
                      </div>
                   </div>
