@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import Navbar from "../components/Navbar"
 import icon_search_white from "../public/icon_search_white.svg"
 import icon_search_black from "../public/icon_search_black.svg"
@@ -13,83 +13,83 @@ export default function search() {
    const resultNotFound = useRef(null);
    const [lastvalue, setLastvalue] = useState("");
    const [warning, setWarning] = useState(0)
+   
+   const [infoSong, setInfosong] = useState();
+   const [infoArtist, setInfoartist] = useState();
+   const [infoAll, setInfoall] = useState();
+   const [song, getSong] = useState();
 
-   const infoAll = [
-      {
-         name: "I love you 3000",
-         artist: "Aom",
-         time: "3:46"
-      },
-      {
-         name: "love you 1500",
-         artist: "gift",
-         time: "10:46"
-      },
-      {
-         name: "I love you jub jub",
-         artist: "Meaw",
-         time: "2:46"
-      },
-      {
-         name: "I love you eiei",
-         artist: "Nampueng -.-",
-         time: "1:46"
-      },
+   //useEffect(() => {
+      async function getAllSonglist() {
+         const res = await fetch('/api/song', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' }
+      });
+      const res2 = await res.json();
+      const songAll = await Object.values(res2.song);
+      await getSong(songAll);
+      }
+      getAllSonglist();
+   //}, []);
 
-   ];
-   const infoSong = [
-      {
-         name: "I love you 0",
-         artist: "Aom",
-         time: "3:46"
-      },
-      {
-         name: "love you 1500",
-         artist: "gift",
-         time: "10:46"
-      },
-      {
-         name: "I love you jub jub",
-         artist: "Meaw",
-         time: "2:46"
-      },
-      {
-         name: "I love you eiei",
-         artist: "Nampueng -.-",
-         time: "1:46"
-      },
-
-   ];
-   const infoArtist = [
-      // {
-      //    name: "I love you -",
-      //    artist: "Aom",
-      //    time: "3:46"
-      // },
-      // {
-      //    name: "love you 1500",
-      //    artist: "gift",
-      //    time: "10:46"
-      // },
-      // {
-      //    name: "I love you jub jub",
-      //    artist: "Meaw",
-      //    time: "2:46"
-      // },
-      // {
-      //    name: "I love you eiei",
-      //    artist: "Nampueng -.-",
-      //    time: "1:46"
-      // },
-
-   ];
-
-   const onSubmit = (e) => {
+   async function onSubmit(e) {
       e.preventDefault()
       setSelectType("All");
       searchAll();
       setLastvalue(resultNotFound.current.value);
+      // ใหม่
+      // const body = {
+      //    Name: e.currentTarget.Name.value
+      // }
+      const res3= song.filter(searchsongfun=>searchsongfun.NameSong?.toLowerCase().includes(content));
+      await setInfosong(res3);
+      //console.log(res3);
+      const res4= song.filter(searchsongfun=>searchsongfun.ArtistName?.toLowerCase().includes(content));
+      await setInfoartist(res4);
+
+      function getUnion(array1, array2) {
+         const difference = array1.filter(
+           element => !array2.includes(element)
+         );
+       
+         return [...difference, ...array2];
+       }
+
+      await setInfoall(getUnion(res3,res4));
+      
+
+      //await getinfoall(res3.concat(res4));
+      //console.log(song.filter(searchsongfun=>searchsongfun.NameSong.includes(content)));
+      
+      // const searchsongfunction = {
+         
+      // }
+
+      // อันเก่า
+      // const body = {
+      //   Name: e.currentTarget.Name.value
+      // }
+      // setSelectType("All");
+      // searchAll();
+      // setLastvalue(resultNotFound.current.value);
+
+      // const res = await fetch('/api/searchsong', {
+      //    method: 'POST',
+      //    headers: { 'Content-Type': 'application/json' },
+      //    body: JSON.stringify(body)
+      // });
+
+      // const res2 = await res.json();
+      // console.log(res2);
+      // const songAll = await Object.values(res2.song);
+      // const songArtistAll = await Object.values(res2.Artist);
+      // await getinfosong(songAll);
+      // await getinfoartist(songArtistAll);
+      // await getinfoall(songAll.concat(songArtistAll));
+      // console.log(songAll);
    }
+
+
 
    const searchAll = () => {
       if (content.length == 0) {
@@ -130,22 +130,22 @@ export default function search() {
    }
 
    const showMusic = () => {
-      if (selectType == "All" && infoAll.length != 0) {
+      if (selectType == "All" && infoAll?.length != 0) {
          return (
-            infoAll.map((num, i) => {
-               return <Music name={num.name} artist={num.artist} time={num.time} key={i} />
+            infoAll?.map((num, i) => {
+               return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} key={i} />
             })
          )
-      } else if (selectType == "Song" && infoSong.length != 0) {
+      } else if (selectType == "Song" && infoSong?.length != 0) {
          return (
-            infoSong.map((num, i) => {
-               return <Music name={num.name} artist={num.artist} time={num.time} key={i} />
+            infoSong?.map((num, i) => {
+               return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} key={i} />
             })
          )
-      } else if (selectType == "Artist" && infoArtist.length != 0) {
+      } else if (selectType == "Artist" && infoArtist?.length != 0) {
          return (
-            infoArtist.map((num, i) => {
-               return <Music name={num.name} artist={num.artist} time={num.time} key={i} />
+            infoArtist?.map((num, i) => {
+               return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} key={i} />
             })
          )
       } else {
@@ -175,14 +175,14 @@ export default function search() {
             <div className="mx-auto max-w-screen-xl">
                <Navbar />
                <div className="w-full h-screen bg-gradient-to-b from-[#000000] via-[#100526] to-[#1C0943] rounded-[10px]">
-                  <div className={`flex flex-col ${openSearch ? "pt-[152px]" : "justify-center"} items-center h-full`}>
-                     <div className={`${openSearch ? "hidden" : ""} font-League_Spartan font-bold text-[#FFFFFF] text-[64px] leading-[59px] mb-[88px]`}>Search</div> {/*${ openSearch ? "-translate-y-20 opacity-0 duration-700 ease-in-out" : ""} */}
+                     <div className={`flex flex-col ${openSearch ? "pt-[152px]" : "justify-center"} items-center h-full`}>
+                     <div className={`${openSearch ? "hidden" : ""} font-League_Spartan font-bold text-[#FFFFFF] text-[64px] leading-[59px] mb-[88px]`}>Search</div> {/* ${ openSearch ? "-translate-y-20 opacity-0 duration-700 ease-in-out" : ""} */}
                      <div className="relative">
                         <img src={icon_search_white.src} alt="" className={`${showicon ? "hidden" : ""} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
                         <img src={icon_search_black.src} alt="" className={`${showicon ? "" : "hidden"} absolute w-[70px] h-[67px] left-[22px] top-[14px]`} />
                         <form onSubmit={onSubmit}>
-                           <input ref={resultNotFound} type="text" className="bg-[#2C2E47] w-[658px] h-[95px] rounded-[10px] border-[#D6D5E8] border text-[36px] leading-[33px] text-[#FFFFFF] font-League_Spartan font-medium pl-[140px] focus:bg-[#FFFFFF] focus:border-[#2C2E47] focus:outline-none focus:text-[#2C2E47]"
-                              placeholder="What do you want to listen to ?" onFocus={() => setShowicon(1)} onBlur={() => setShowicon(0)} onChange={e => { setContent(e.target.value); }}  />
+                           <input ref={resultNotFound} id="Name" name="Name" type="text" className="bg-[#2C2E47] w-[658px] h-[95px] rounded-[10px] border-[#D6D5E8] border text-[36px] leading-[33px] text-[#FFFFFF] font-League_Spartan font-medium pl-[140px] focus:bg-[#FFFFFF] focus:border-[#2C2E47] focus:outline-none focus:text-[#2C2E47]"
+                              placeholder="What do you want to listen to ?" onFocus={() => setShowicon(1)} onBlur={() => setShowicon(0)} onChange={e => { setContent(e.target.value.toLowerCase()); }}  />
                         </form>
                      </div>
                      <div className={`${warning ? "block " : "hidden"}`}>
