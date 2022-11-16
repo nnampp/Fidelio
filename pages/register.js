@@ -41,18 +41,18 @@ export default function register() {
       else if (res2.passworderror) {
             //focus(res2.error);
             //alert(res2.error);
-         setWarningUsername(0);
+         //setWarningUsername(0);
          setWarningUsername(0);
          setWarningPassword(1);
       } 
       else if (res2.mailerror) {
-         setWarningUsername(0);
+         //setWarningUsername(0);
          setWarningUsername(0);
          setWarningPassword(0);
          setWarningEmail(1);
       }
       else if (res2.phoneerror) {
-         setWarningUsername(0);
+         //setWarningUsername(0);
          setWarningUsername(0);
          setWarningPassword(0);
          setWarningEmail(0);

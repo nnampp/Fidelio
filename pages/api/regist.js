@@ -8,12 +8,13 @@ export default async function handler(req, res) {
         return res.status(422).json({ usererror: "Can't use this username" })
     }
 
-    var passwordformat = /^(?=.*\d)(?=.*[a-z]).{8,50}$/;
+    var passwordformat = /^(?=.*\d)(?=.*[a-z]).{8,}$/;
+    //var passwordformat = /^(?=.*\d)(?=.*[a-z])(!=.*[!@#$%^&*])(!=.*[A-Z]).{8,50}$/;
     if(!Password.match(passwordformat)){
         return res.status(422).json({ passworderror: "Password is not valid" })
     }
-
-    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    //var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(!Email.match(mailformat)){
         return res.status(422).json({ mailerror: "Email is not valid" })
     }
