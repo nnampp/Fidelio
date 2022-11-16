@@ -43,7 +43,11 @@ export default function Navbar() {
       <>
          <div className="fixed top-0 w-full bg-[#000000] h-[99px] z-10 max-w-screen-xl mx-auto">
             <div className="flex flex-row justify-between items-center h-full">
-               <img src={logo.src} alt="" className=" h-[70px] ml-[45px]" />
+               <Link href="/home" >
+                  <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">
+                  <img src={logo.src} alt="" className=" h-[70px] ml-[45px]" />
+                  </div>
+               </Link>
                <div className="flex flex-row gap-[23px]">
                   <Link href="/home" >
                      <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">
