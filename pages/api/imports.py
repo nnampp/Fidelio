@@ -1,22 +1,20 @@
-from flask import Flask,request, make_response, jsonify
-from flask_cors import CORS,cross_origin
+import datetime
+import glob
+import math
 import os
 # from flask_cors import CORS
 from fileinput import filename
 from html.entities import name2codepoint
-from pytube import YouTube
-from pydub import AudioSegment
-import math
+
+import firebase_admin
 import numpy as np
-import os
-import glob
-import datetime
 # เอาไฟล์ลงดาต้าเบส
 import pyrebase
-import firebase_admin
-from firebase_admin import firestore
-from firebase_admin import storage
-from firebase_admin import credentials
+from firebase_admin import credentials, firestore, storage
+from flask import Flask, jsonify, make_response, request
+from flask_cors import CORS, cross_origin
+from pydub import AudioSegment
+from pytube import YouTube
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -27,8 +25,10 @@ def importSong():
 
     data = request.get_json()
     Link = data['Link']
-    NameSong = data['Songname'] 
-    ArtistName = data['Artist']
+    NameSong_unreplace = data['Songname'] 
+    NameSong = NameSong_unreplace.replace(' ','+')
+    ArtistName_unreplace = data['Artist']
+    ArtistName = ArtistName_unreplace.replace(' ','+')
 
     try:
         app = firebase_admin.get_app()
@@ -100,7 +100,7 @@ def importSong():
 
     for file in lst:  
         song = os.system(f"""ffmpeg -i {file} -acodec pcm_u8 -ar 22050 {file[:-4]}.wav""") #แปลงเป็น wav ลงเครื่อง
-        os.remove(file) #เอาเพลง mp3 ในเครื่องออก
+        # os.remove(file) #เอาเพลง mp3 ในเครื่องออก
 
     sample =  AudioSegment.from_file('Bootsbase\\'+name+'.wav') #อ่านไฟล์ wav
 

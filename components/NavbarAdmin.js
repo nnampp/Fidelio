@@ -22,9 +22,9 @@ export default function NavbarAdmin() {
    const user =  cookieuser.user ? JSON.parse(cookieuser.user) : ""
    const tok = cookieuser.token;
 
-   if(!tok) {
-     handleLogout();
-   }
+   // if(!tok) {
+   //   handleLogout();
+   // }
 
    useEffect(() => { 
       setName(user.Name); 
