@@ -9,8 +9,8 @@ import notificationimg from "../public/notificationimg.png"
    export default function register() {
       const cookieuser = parseCookies()
       const tok = cookieuser.token;
-      const [OpenSearch,setOpenSearch] = useState(0); //for red box
-      const [username , setWarningUsername] = useState(0) 
+      const [OpenSearch,setOpenSearch] = useState(1); //for red box
+      const [username , setWarningUsername] = useState(1) 
       const [password ,setWarningPassword] = useState(1)
       const [warning, setWarning] = useState(0) //for below warning
       
@@ -125,7 +125,7 @@ import notificationimg from "../public/notificationimg.png"
                               {showWarningpassword ()}
                            </div>
                            
-                           <button type="submit" className="w-[170px] h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-bold font-League_Spartan bg-gradient-to-r from-[#723AE8] via-[#6763CE] to-[#7BB2E5] mb-[44px] focus:ring focus:ring-[#7BB2E5]" >Login</button>
+                           <button type="submit" className="w-[170px] h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-bold font-League_Spartan bg-gradient-to-r from-[#723AE8] via-[#6763CE] to-[#7BB2E5] mb-[44px] mt-[20px] focus:ring focus:ring-[#7BB2E5]" >Login</button>
                            {/* <div className="font-League_Spartan text-[#696F79]">I don't have an account? <Link href="/register"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Register</u></span></Link>  </div> */}
                         </div>
                         </form>
