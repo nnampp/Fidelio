@@ -12,6 +12,8 @@ export default function Listentosong() {
    const audioPlayer = useRef();
    const rangeBar = useRef();
    const [newdata, setNewdata] = useState();
+   const [newvalue, setNewvalue] = useState("");
+
 
    const listMusic = [
       {
@@ -23,20 +25,25 @@ export default function Listentosong() {
    const router = useRouter()
    const ListentosongID = router.query.ListentosongID
 
+
+
    useEffect(() => {
-      const seconds = Math.floor(audioPlayer.current.duration)
-      setDuaration(seconds)
-      // alert("test");
       const getInitialProps = async () => {
-         const res = await axios.get('https://pixabay.com/api/videos/?key=31122990-29c4c67fa1bea010fa87f62df&q=flower+yellow');
-         await setNewdata(res.data);
-         console.log(newdata)
+         try {
+            const res = await axios.get('https://pixabay.com/api/videos/?key=31122990-29c4c67fa1bea010fa87f62df&q=flower+yellow');
+            setNewdata(res.data);
+         } catch (err) {
+            console.log(err);
+         }
       };
       getInitialProps();
+
       
-   
-      //audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState
+
    }, [])
+
+
+   // audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState
    // adding "?" to say if autdioPlay exists, if current exists
    // We will update (call function in useEffect again) when loadmetadata 
    // The loadedmetadata event occurs when metadata for the specified audio/video has been loaded
@@ -108,6 +115,11 @@ export default function Listentosong() {
       audioPlayer.current.currentTime = newTime;
    }
 
+   const setUpAudio = () => {
+      const seconds =  audioPlayer?.current?.duration;
+      setDuaration(seconds);
+      // console.log(newdata?.hits[0]?.videos?.small?.url)
+   }
 
    return (
       <>
@@ -126,7 +138,7 @@ export default function Listentosong() {
                            <div className="flex flex-row">
                               <img src="../Group 11.jpg" alt="" className=" rounded-[10px] w-[124px] h-[112px]  mt-[127.63px] " />
                               <div className="flex flex-col">
-                                 <p className="text-[40px] font-Commissioner font-bold text-[#FFFFFF] ml-[38px] mt-[140px] ">Song Name {ListentosongID}</p>
+                                 <p className="text-[40px] font-Commissioner font-bold text-[#FFFFFF] ml-[38px] mt-[140px] ">Song Name</p>
                                  <p className="text-[24px] font-Commissioner font-Semibold text-[#FFFFFF]  ml-[38px] mt-[คpx] ">Artist</p>
                               </div>
                            </div>
@@ -142,7 +154,7 @@ export default function Listentosong() {
                                     <img src="../after.png" alt="" className=" w-[49px] h-[40px] ml-[36px] mt-[116px] " />
                                  </Link>
                               </div>
-                           </div>
+                           </div>console.log
                            <div className="flex flex-row gap-[25px] mt-[19px]">
                               <div className="w-[31px] h-[23px] bg-[#6D7F89] rounded-[15px] text-[#FFFFFF] flex flex-row justify-center items-center hover:cursor-pointer" onClick={shiftLeft}>
                                  <div className="font-League_Spartan text-[12px] leading-[11px] font-semibold">-30s</div>
@@ -156,9 +168,15 @@ export default function Listentosong() {
                               <input ref={rangeBar} type="range" min="0" max={duration} onChange={changeRange} style={getBackgroundSize()} className="sliderWithLabels" value={value} />
                               <p className="text-[13px] font-Commissioner font-Semibold text-[#FFFFFF]">{calculateTime(duration)}</p>
                            </div>
-                           
-                           <audio ref={audioPlayer} src="/Time.mp3" id="a1" onTimeUpdate={whenUpdate}>Your browser do not support</audio>
-                           {/* <audio ref={audioPlayer} src={newdata.hits[0].videos.small.url} id="a1" onTimeUpdate={whenUpdate}>Your browser do not support</audio> */}
+
+                           {/* <audio ref={audioPlayer} src="/Time.mp3" id="a1" onTimeUpdate={whenUpdate}>Your browser do not support</audio> */}
+                           <audio ref={audioPlayer}
+                              src={newdata?.hits[0]?.videos?.small?.url}
+                              id="a1"
+                              onTimeUpdate={whenUpdate}
+                              onLoadedData={setUpAudio}>
+                              Your browser do not support
+                           </audio>
                         </div>
                      </div>
                   </div>
