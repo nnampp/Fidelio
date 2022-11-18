@@ -10,8 +10,8 @@ import notificationimg from "../public/notificationimg.png"
       const cookieuser = parseCookies()
       const tok = cookieuser.token;
       const [OpenSearch,setOpenSearch] = useState(1); //for red box
-      const [username , setWarningUsername] = useState(1) 
-      const [password ,setWarningPassword] = useState(1)
+      const [username , setWarningUsername] = useState(0) 
+      const [password ,setWarningPassword] = useState(0)
       const [warning, setWarning] = useState(0) //for below warning
       
 
@@ -33,15 +33,21 @@ import notificationimg from "../public/notificationimg.png"
       });
       
       const res2 = await res.json();
-      if (res2.error) {
-         alert(res2.error);
+      if (res2.error1) {
+         //alert(res2.error1);
+         setWarningUsername(1);
+      }
+      else if (res2.error) {
+         //alert(res2.error);
+         setWarningUsername(0);
+         setWarningPassword(1);
       }
       else {
-         alert(res2.message);
+         //alert(res2.message);
          if(res2.user.Role === 'Admin') {
             cookie.set('token',res2.token);
             cookie.set('user',JSON.stringify(res2.user));
-            window.location = '/testcookie';
+            window.location = '/import';
          }
          else {
             alert("Page available for admin only !!");
