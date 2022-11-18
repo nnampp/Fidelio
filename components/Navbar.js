@@ -36,20 +36,24 @@ export default function Navbar() {
       console.log("logout!");
       cookie.remove('token');
       cookie.remove('user');
-      router.push('/signin');
+      //router.push('/signin');
+      if(user.Role=='Admin')
+         router.push('/signin-admin');
+      else if(user.Role=='User')
+         router.push('/signin');
    }
 
    return (
       <>
          <div className="fixed top-0 w-full bg-[#000000] h-[99px] z-10 max-w-screen-xl mx-auto">
             <div className="flex flex-row justify-between items-center h-full">
-               <Link href="/home" >
+               <Link href={`${user.Role=='Admin'  ? "/import" : "/home" } `} >
                   <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">
                   <img src={logo.src} alt="" className=" h-[70px] ml-[45px]" />
                   </div>
                </Link>
                <div className="flex flex-row gap-[23px]">
-                  <Link href="/home" >
+                  <Link href={`${user.Role=='Admin'  ? "/import" : "/home" } `} >
                      <div className="flex flex-row items-center gap-[15px] h-full cursor-pointer">
                         <img src={icon_home.src} alt="icon home" className="w-[35px] h-[35px]" />
                         <div className=" font-League_Spartan text-[40px] text-[#FFFFFF] font-bold leading-[37px]">Home</div>

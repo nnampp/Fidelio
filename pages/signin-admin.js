@@ -36,6 +36,7 @@ import notificationimg from "../public/notificationimg.png"
       if (res2.error1) {
          //alert(res2.error1);
          setWarningUsername(1);
+         setWarningPassword(0);
       }
       else if (res2.error) {
          //alert(res2.error);
