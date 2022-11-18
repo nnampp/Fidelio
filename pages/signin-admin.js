@@ -55,7 +55,7 @@ import notificationimg from "../public/notificationimg.png"
       } 
    }
 
-   const showWarningpassword = () => {
+   const showWarningusername = () => {
       return (
          <>
        
@@ -71,7 +71,7 @@ import notificationimg from "../public/notificationimg.png"
          </>
       )
    }
-   const showWarningusername = () => {
+   const showWarningpassword = () => {
       return (
          <>
              <div className='flex flex-row gap-[6px] mb-[21px] ml-[-80px]'>
@@ -125,9 +125,9 @@ import notificationimg from "../public/notificationimg.png"
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
 
-                           <div className={`${username  ? "hidden" : "" } `}>
+                           <div className={`${username  ? "" : "hidden" } `}>
                               {showWarningusername ()}
-                           </div><div className={`${password ? "hidden" : "" } `}>
+                           </div><div className={`${password ? "" : "hidden" } `}>
                               {showWarningpassword ()}
                            </div>
                            
