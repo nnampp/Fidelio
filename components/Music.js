@@ -1,24 +1,36 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import button_play from "../public/button_play.svg"
 import icon_headphone from "../public/icon_headphone.svg"
 import Link from "next/link";
+import Router from "next/router";
+import { SongContext } from "../pages/SongContext";
 
-export default function Music({ name, artist, time }) {
-   const listMusic = [
-      {
-         name: "Playtime",
-         artist: "meaw"
-      }
-   ]
+export default function Music({ name, artist, time, path }) {
+   const song = useContext(SongContext);
+
+   const nextPage = () => {
+      Router.push({
+         pathname: `/listentosong/${name}`,
+         query: {
+            name,
+            artist,
+            time,
+            path
+         }
+      })
+   }
+
    return (
       <>
          <div className="flex flex-row items-center h-[132px] w-full">
             <div className="basis-5/6">
                <div className="flex flex-row items-center">
                   <div className="ml-[49px]">
-                     <Link href={`/listentosong/${listMusic[0].name}`}>
+                     {/* <Link href={{pathname: `/listentosong/${listMusic[0].name}`,query: artist }}>  */}
+                     {/* <Link href={`/listentosong/${name}`}>  */}
+                     <a onClick={() => nextPage()}>
                         <img src={button_play.src} alt="" className="w-[62px] h-[62px]" />
-                     </Link>
+                     </a>
                   </div>
                   <div className="ml-[69px] w-[80px] h-[80px] bg-gradient-to-b from-[#4180DB] via-[#586DBB] to-[#8A68CF] rounded-[10px]">
                      <div className="flex flex-row justify-center items-center w-full h-full">

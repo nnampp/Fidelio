@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar"
 import Music from "../components/Music";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { SongContext } from "./SongContext";
 const test = [
    {
       NameSong: "I love you 3000",
@@ -11,28 +12,43 @@ const test = [
 ];
 
 export default function home() {
-   const [song, getSong] = useState();
-
+   // const [song, getSong] = useState();
+   const song = useContext(SongContext);
    useEffect(() => {
-      async function getAllSonglist() {
-         const res = await fetch('/api/song', {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' }
-      });
-      const res2 = await res.json();
-      const songAll = await Object.values(res2.song);
-      await getSong(songAll);
-      }
-      getAllSonglist();
+      // async function getAllSonglist() {
+      //    const res = await fetch('/api/song', {
+      //    method: 'POST',
+      //    headers: { 'Content-Type': 'application/json' }
+      // });
+      // const res2 = await res.json();
+      // const songAll = await Object.values(res2.song);
+      // await getSong(songAll);
+      // }
+      // getAllSonglist();
+
+      
    }, []);
 
    const showSong = () => {
       return (
          song?.map((num, i) => {
-            return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} key={i} />
+            return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} path={num.Path} key={i} />
          })
       )
    }
+
+   const callSong = () => {
+      console.log(song)
+      if (song === undefined) {
+         console.log("meaw")
+         return (<div className="text-white">Meaw</div>);
+      };
+      return (
+         <div className="text-white">{song[0].Path}</div>
+      )
+   }
+   
+   
 
    return (
       <>
