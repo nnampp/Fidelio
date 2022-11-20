@@ -1,9 +1,10 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useContext } from "react"
 import Navbar from "../components/Navbar"
 import icon_search_white from "../public/icon_search_white.svg"
 import icon_search_black from "../public/icon_search_black.svg"
 import Music from "../components/Music"
 import no_result from "../public/no_result.png"
+import { SongContext } from "./SongContext";
 
 export default function search() {
    const [showicon, setShowicon] = useState(0);
@@ -17,19 +18,20 @@ export default function search() {
    const [infoSong, setInfosong] = useState();
    const [infoArtist, setInfoartist] = useState();
    const [infoAll, setInfoall] = useState();
-   const [song, getSong] = useState();
+   // const [song, getSong] = useState();
+   const song = useContext(SongContext);
 
    //useEffect(() => {
-      async function getAllSonglist() {
-         const res = await fetch('/api/song', {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' }
-      });
-      const res2 = await res.json();
-      const songAll = await Object.values(res2.song);
-      await getSong(songAll);
-      }
-      getAllSonglist();
+      // async function getAllSonglist() {
+      //    const res = await fetch('/api/song', {
+      //    method: 'POST',
+      //    headers: { 'Content-Type': 'application/json' }
+      // });
+      // const res2 = await res.json();
+      // const songAll = await Object.values(res2.song);
+      // await getSong(songAll);
+      // }
+      // getAllSonglist();
    //}, []);
 
    async function onSubmit(e) {

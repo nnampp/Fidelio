@@ -1,44 +1,41 @@
-import Test from "../components/Test"
-import { Dropdown } from "flowbite-react";
-import logo from "../public/Logo.png"
+import { useContext, useEffect } from "react";
 import Music from "../components/Music";
-import { useRef, useState } from "react";
+import { SongContext } from "./SongContext";
 
 
 export default function Home() {
-   const audioPlayer = useRef();
-   const [value, setValue] = useState(0);
-   const MAX = 200;
-   const getBackgroundSize = () => {
-      return {
-         backgroundSize: `${(value * 100) / MAX}% 100%`
-      };
-   };
+   const song = useContext(SongContext);
+   useEffect(() => {
+      const foo = async () => {
+         // const data1 = await song[0]?.Time;
 
-   function play() {
-      // var audio = document.getElementById('a1');
-      // audio.play();
-      audioPlayer.current.play();
+      }
+      foo();
+   }, [])
+
+   const callSong = () => {
+      console.log(song)
+      if (song === undefined) {
+         console.log("meaw")
+         return (<div>Meaw</div>);
+      };
+      return (
+         <div>{song[0].Time}</div>
+      )
    }
-   function pause() {
-      // var audio = document.getElementById('a1');
-      // audio.play();
-      audioPlayer.current.pause();
-   }
+
    return (
       <>
-         <button className=" bg-black text-white w-[70px] h-[30px]" id='a1' onClick={play}>Play</button>
-         <div></div>
-         <button className=" bg-black text-white w-[70px] h-[30px]" id='a1' onClick={pause}>Pause</button>
-         <audio ref={audioPlayer} src="/Time.mp3" id="a1" preload="metadata">Your browser do not support
-         </audio>
-         <div>
-
+         <div className="bg-black">
+            {
+               song?.map((num, i) => {
+                  return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} key={i} />
+               })
+            }
+            {
+               callSong()
+            }
          </div>
-         <input type="range" min="0" max={MAX} onChange={(e) => setValue(e.target.value)} style={getBackgroundSize()}
-            value={value} className=" sliderWithLabels" id="" />
-         <div className="w-[20px] h-[20px] test"  ></div>
       </>
-
    )
 }

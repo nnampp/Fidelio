@@ -36,7 +36,7 @@ export default function NavbarAdmin() {
       console.log("logout!");
       cookie.remove('token');
       cookie.remove('user');
-      router.push('/signin');
+      router.push('/signin-admin');
    }
 
    return (
