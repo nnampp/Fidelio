@@ -4,22 +4,24 @@ import { createUser,findUser } from "../../lib/firebase";
 export default async function handler(req, res) {
     const {Username, Password, Name, Email, Phonenumber, Role} = req.body;
     
-    if(await findUser({ Username })) {
+    var usernameformat = /^([A-Za-z0-9.!@#$%&"<>,:()'*+/=?^_`{|}~-])+$/;
+    if(await findUser({ Username }) || !Username.match(usernameformat)) {
         return res.status(422).json({ usererror: "Can't use this username" })
     }
 
+    var thaiformat = /[ก-๛]/;
     var passwordformat = /^(?=.*\d)(?=.*[a-z]).{8,}$/;
-    //var passwordformat = /^(?=.*\d)(?=.*[a-z])(!=.*[!@#$%^&*])(!=.*[A-Z]).{8,50}$/;
-    if(!Password.match(passwordformat)){
+    if(!Password.match(passwordformat) || Password.match(thaiformat)){
         return res.status(422).json({ passworderror: "Password is not valid" })
     }
+
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    //var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if(!Email.match(mailformat)){
+    //var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,3}+)*$/;
+    if(!Email.match(mailformat) || Email.match(thaiformat)){
         return res.status(422).json({ mailerror: "Email is not valid" })
     }
 
-    var phoneformat = /^\d{10}$/;
+    var phoneformat = /^[0]+\d{9}$/;
     if(!Phonenumber.match(phoneformat)){
         return res.status(422).json({ phoneerror: "Phone number is not valid" })
     }
