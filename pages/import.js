@@ -7,14 +7,17 @@ import { useState } from "react"
 
 export default function Import() {
    const [confirm, setConfirm] = useState(0);
+   const [link, setLink] = useState("");
+   const [songName, setSongName] = useState("");
+   const [artist, setArtist] = useState("");
 
    async function handleSubmit(e) {
       e.preventDefault();
 
       const body = {
-         Link: e.currentTarget.link.value,
-         Songname: e.currentTarget.songname.value,
-         Artist: e.currentTarget.artist.value,
+         Link: link,
+         Songname: songName,
+         Artist: artist,
          Role: "Admin"
       };
 
@@ -52,18 +55,21 @@ export default function Import() {
                      <div className="flex flex-col w-full h-full items-start pt-[72px] pl-[377px]">
                         {/* enter link */}
                         <div className='flex flex-col items-start gap-[4px] mb-[47px] '>
-                           <input type="text" id="link" name="link" className="bg-[#2C2E47]  w-[721px] h-[71px] border border-[#D6D5E8] rounded-[10px] pl-[35px] py-[18px] text-[#FFFFFF] font-Commissioner text-[20px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your link here!!" required />
+                           <input type="text" id="link" name="link" className="bg-[#2C2E47]  w-[721px] h-[71px] border border-[#D6D5E8] rounded-[10px] pl-[35px] py-[18px] text-[#FFFFFF] font-Commissioner text-[20px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " 
+                           placeholder="Enter your link here!!" onChange={e => { setLink(e.target.value); }} required />
                         </div>
                         {/* enter song,artist */}
                         <div className='flex flex-row gap-[65px] mb-[63px] '>
                            <div className='flex flex-col items-start'>
-                              <input type="text" id="songname" name="songname" className="bg-[#2C2E47] w-[328px] h-[71px] border border-[#D6D5E8] rounded-[10px] pl-[35px] py-[18px] text-[#FFFFFF] font-Commissioner text-[20px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Song name" required />
+                              <input type="text" id="songname" name="songname" className="bg-[#2C2E47] w-[328px] h-[71px] border border-[#D6D5E8] rounded-[10px] pl-[35px] py-[18px] text-[#FFFFFF] font-Commissioner text-[20px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " 
+                              placeholder="Song name" onChange={e => { setSongName(e.target.value); }} required />
                            </div>
                            <div className='flex flex-col items-start'>
-                              <input type="text" id="artist" name="artist" className="bg-[#2C2E47] w-[328px] h-[71px] border border-[#D6D5E8] rounded-[10px] pl-[35px] py-[18px] text-[#FFFFFF] font-Commissioner text-[20px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Artist" required />
+                              <input type="text" id="artist" name="artist" className="bg-[#2C2E47] w-[328px] h-[71px] border border-[#D6D5E8] rounded-[10px] pl-[35px] py-[18px] text-[#FFFFFF] font-Commissioner text-[20px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " 
+                              placeholder="Artist" onChange={e => { setArtist(e.target.value); }} required />
                            </div>
                         </div>
-                        <button type="upload" className="ml-[231px] w-[265px] h-[68px] rounded-[50px] text-[24px] text-[#FFFFFF] font-medium font-League_Spartan bg-gradient-to-r from-[#F68FF2] via-[#A35AAD] to-[#1565D8] focus:ring focus:ring-[#5D37AC] " >Upload</button>
+                        <button type="upload" className="ml-[231px] w-[265px] h-[68px] rounded-[50px] text-[24px] text-[#FFFFFF] font-medium font-League_Spartan bg-gradient-to-r from-[#F68FF2] via-[#A35AAD] to-[#1565D8] focus:ring focus:ring-[#5D37AC]" onClick={() => {setConfirm(1)} } >Upload</button>
                      </div>
                      </form>
                   </div>

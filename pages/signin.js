@@ -5,7 +5,7 @@ import cookie from 'js-cookie'
 import { useState } from "react"
 import notificationimg from "../public/notificationimg.png"
 
-export default function register() {
+export default function Signin() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
    const [OpenSearch,setOpenSearch] = useState(1); //for red box

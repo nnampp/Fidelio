@@ -5,7 +5,7 @@ import { parseCookies } from 'nookies'
 import { sign } from 'jsonwebtoken';
 import notificationimg from "../public/notificationimg.png"
 
-export default function register() {
+export default function Register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
    const [inputUsername , setWarningUsername] = useState(0)

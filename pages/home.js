@@ -11,7 +11,7 @@ const test = [
 
 ];
 
-export default function home() {
+export default function Home() {
    // const [song, getSong] = useState();
    const song = useContext(SongContext);
    useEffect(() => {

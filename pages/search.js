@@ -6,7 +6,7 @@ import Music from "../components/Music"
 import no_result from "../public/no_result.png"
 import { SongContext } from "./SongContext";
 
-export default function search() {
+export default function Search() {
    const [showicon, setShowicon] = useState(0);
    const [selectType, setSelectType] = useState("");
    const [content, setContent] = useState("");

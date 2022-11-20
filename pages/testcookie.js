@@ -2,7 +2,7 @@ import { parseCookies } from 'nookies'
 import { useEffect, useState } from 'react'
 import cookie from 'js-cookie'
 
-export default function testcookie() {
+export default function Testcookie() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
 

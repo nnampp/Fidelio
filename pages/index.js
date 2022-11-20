@@ -3,7 +3,7 @@ import Music from "../components/Music";
 import { SongContext } from "./SongContext";
 
 
-export default function Home() {
+export default function Index() {
    const song = useContext(SongContext);
    useEffect(() => {
       const foo = async () => {
