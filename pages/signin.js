@@ -9,7 +9,7 @@ export default function register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
    const [OpenSearch,setOpenSearch] = useState(1); //for red box
-   const [username , setWarningUsername] = useState(1) 
+   const [username , setWarningUsername] = useState(0) 
    const [password ,setWarningPassword] = useState(0)
    const [warning, setWarning] = useState(0) //for below warning
    
@@ -38,6 +38,7 @@ export default function register() {
       if (res2.error1) {
          //alert(res2.error1);
          setWarningUsername(1);
+         setWarningPassword(0);
       }
       else if (res2.error) {
          //alert(res2.error);
@@ -45,11 +46,17 @@ export default function register() {
          setWarningPassword(1);
       }
       else {
-         cookie.set('token',res2.token);
-         cookie.set('user',JSON.stringify(res2.user));
-         //console.log(res2.user);
-         //alert(res2.message);
-         window.location = '/home';
+
+         if(res2.user.Role === 'User') {
+            cookie.set('token',res2.token);
+            cookie.set('user',JSON.stringify(res2.user));
+            //console.log(res2.user);
+            //alert(res2.message);
+            window.location = '/home';
+         }
+         else {
+            alert("Page available for user only !!");
+         }
       } 
    }
  
