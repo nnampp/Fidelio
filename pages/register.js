@@ -68,12 +68,12 @@ export default function Register() {
    const showWarnUsername = () => {
       return (
          <>
-            <div className='flex flex-row gap-[6px] mb-[10px] '>
+            <div className='flex flex-row gap-[6px] mb-[10px] ml-[10px]'>
                <div className='flex flex-col items-center w-full h-full'>
                   <img src={notificationimg.src} alt="" className="w-[11px] h-[11px]" /> 
                </div>
                <div className='flex flex-col items-center w-full h-full'>
-                  <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">Invalid username. Please try again. (Username must be English.)</p>
+                  <p className="text-[10px] w-[420px] font-Commissioner font-normal text-[#DC1414]">Invalid username. Please try again. (Username must be English.)</p>
                </div>
             </div>
          </>
