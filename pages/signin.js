@@ -126,7 +126,7 @@ export default function Signin() {
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>
                              {/*} <input type="password" id="passlogin" name="passlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#FA3939] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your Password" required />*/}
 
-                              <input type="password" id="passlogin" name="passlogin" className={`${password ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `}  placeholder="Enter your Password" required />
+                              <input type="password" id="passlogin" name="passlogin" className={`${password ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `}  placeholder="Enter your password" required />
                               
                              
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
