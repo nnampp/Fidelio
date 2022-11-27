@@ -1,11 +1,12 @@
-import { useState, useRef, useEffect,useContext } from "react"
+import { useState, useRef, useEffect, useContext } from "react"
 import music from "../../public/music-playing.gif"
 import { useRouter } from "next/router"
 import Link from "next/link";
 import axios from 'axios';
 import { SongContext } from "../SongContext";
 import Router from "next/router";
-// import {getStorage, ref} from "firebase/storage"
+import { getStorage, ref, getMetadata, getDownloadURL } from "firebase/storage";
+import { initializeApp } from "firebase/app";
 
 export default function Listentosong() {
    const [playStatus, setPlayStatus] = useState(0);
@@ -14,16 +15,57 @@ export default function Listentosong() {
    const audioPlayer = useRef();
    const rangeBar = useRef();
    const [newdata, setNewdata] = useState();
+   const [newpath, setPath] = useState();
    const song = useContext(SongContext)
    const router = useRouter()
-   // const storage = getStorage();
-   
+   const [URL, setURL] = useState("https://firebasestorage.googleapis.com/v0/b/my-first-project-d7b77.appspot.com/o/song%2F2002.mp3?alt=media&token=287d461b-8c2a-409c-8670-67f9e46daf59");
 
-   const {query: {name, artist, time, path},} = router
-
-   const ListentosongID = router.query.ListentosongID
    
-   // const pathReference = ref(storage, path);
+   const { query: { name, artist, time, path }, } = router
+
+
+   const firebaseConfig = {
+      apiKey: "AIzaSyAfkjuMhBt46PPW36XDmesayi-k5jQvVT4",
+      authDomain: "my-first-project-d7b77.firebaseapp.com",
+      databaseURL: "https://my-first-project-d7b77.firebaseio.com",
+      projectId: "my-first-project-d7b77",
+      storageBucket: "my-first-project-d7b77.appspot.com",
+      messagingSenderId: "766071481517",
+      appId: "1:766071481517:web:fe12e4076a9e6436091224",
+      measurementId: "G-17004Y30QN"
+   };
+   const app = initializeApp(firebaseConfig);
+   const storage = getStorage(app);
+   // const ListentosongID = router.query.ListentosongID
+
+
+   const callPath = () => {
+      // console.log(path)
+      if (path === undefined) {
+         return (console.log("before : "))
+      }
+      return (getDownloadURL(ref(storage, path))
+         .then((url) => {
+            console.log("after " + url)
+            setURL(url);
+         })
+         .catch((error) => {
+            // Handle any errors
+         }))
+   }
+   // callPath()
+   // console.log(path)
+   // setNewdata(path)
+
+   // getDownloadURL(ref(storage, path))
+   //       .then((url) => {
+   //          console.log(url)
+   //          setURL(url);
+   //          // console.log(URL);
+   //       })
+   //       .catch((error) => {
+   //          // Handle any errors
+   //       });
 
 
    useEffect(() => {
@@ -36,13 +78,10 @@ export default function Listentosong() {
          }
       };
       getInitialProps();
+      console.log("Change Page")
+      audioPlayer?.current?.load();
    }, [])
 
-
-   // audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState
-   // adding "?" to say if autdioPlay exists, if current exists
-   // We will update (call function in useEffect again) when loadmetadata 
-   // The loadedmetadata event occurs when metadata for the specified audio/video has been loaded
 
    const calculateTime = (secs) => {
       const minus = Math.floor(secs / 60);
@@ -112,8 +151,9 @@ export default function Listentosong() {
    }
 
    const setUpAudio = () => {
-      const seconds =  audioPlayer?.current?.duration;
+      const seconds = audioPlayer?.current?.duration;
       setDuaration(seconds);
+      callPath()
       // console.log(newdata?.hits[0]?.videos?.small?.url)
    }
 
@@ -123,30 +163,28 @@ export default function Listentosong() {
 
    const prevSong = () => {
       const position = song.findIndex(checkPresent)
-      console.log(position);
-      if(position == "0"){// case 1 : array == 0 -> can't prev
+      if (position == "0") {// case 1 : array == 0 -> can't prev
          location.reload();
-      }else{// case 2 : array > 0
-         const name = song[position-1].NameSong
-         const artist = song[position-1].ArtistName
-         const time = song[position-1].Time
-         const path = song[position-1].Path
+      } else {// case 2 : array > 0
+         const name = song[position - 1].NameSong
+         const artist = song[position - 1].ArtistName
+         const time = song[position - 1].Time
+         const path = song[position - 1].Path
          Router.push({
-            pathname: `/listentosong/${song[position-1].NameSong}`,
+            pathname: `/listentosong/${song[position - 1].NameSong}`,
             query: {
                name,
                artist,
                time,
                path
             }
-         })
+         }).then(() => router.reload())
       }
    }
 
    const nextSong = () => {
       const position = song.findIndex(checkPresent)
-      console.log(song.length);
-      if(position == song.length - 1){// case 1 : array == Last index -> First Song
+      if (position == song.length - 1) {// case 1 : array == Last index -> First Song
          const name = song[0].NameSong
          const artist = song[0].ArtistName
          const time = song[0].Time
@@ -159,33 +197,26 @@ export default function Listentosong() {
                time,
                path
             }
-         })
-      }else{// case 2 : array > 0
-         const name = song[position+1].NameSong
-         const artist = song[position+1].ArtistName
-         const time = song[position+1].Time
-         const path = song[position+1].Path
+         }).then(() => router.reload())
+      } else {// case 2 : array > 0
+         const name = song[position + 1].NameSong
+         const artist = song[position + 1].ArtistName
+         const time = song[position + 1].Time
+         const path = song[position + 1].Path
          Router.push({
-            pathname: `/listentosong/${song[position+1].NameSong}`,
+            pathname: `/listentosong/${song[position + 1].NameSong}`,
             query: {
                name,
                artist,
                time,
                path
             }
-         })
+         }).then(() => router.reload())
       }
    }
 
 
-   const callSong = () => {
-      if (song === undefined) {
-         return "meaw"
-      };
-      return (
-         song[0].Path
-      )
-   }
+
 
    return (
       <>
@@ -238,10 +269,12 @@ export default function Listentosong() {
                            {/* <audio ref={audioPlayer} src="/Time.mp3" id="a1" onTimeUpdate={whenUpdate}>Your browser do not support</audio> */}
                            <audio ref={audioPlayer}
                               // src={newdata?.hits[0]?.videos?.small?.url}
-                              src="https://firebasestorage.googleapis.com/v0/b/fidelio-a5340.appspot.com/o/song%2FBNK48_Believers.mp3?alt=media&token=6b8f0ba0-da97-47e1-8ff7-57627f9c86ce"
+                              // src="https://firebasestorage.googleapis.com/v0/b/my-first-project-d7b77.appspot.com/o/song%2F2002.mp3?alt=media&token=287d461b-8c2a-409c-8670-67f9e46daf59"
+                              src={URL}
                               id="a1"
                               onTimeUpdate={whenUpdate}
-                              onLoadedData={setUpAudio}>
+                              onLoadedData={setUpAudio}
+                           >
                               Your browser do not support
                            </audio>
                         </div>

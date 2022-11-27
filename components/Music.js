@@ -17,7 +17,7 @@ export default function Music({ name, artist, time, path }) {
             time,
             path
          }
-      })
+      }).then(() => window.location.reload())
    }
 
    return (
