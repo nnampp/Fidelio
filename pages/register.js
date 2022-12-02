@@ -5,7 +5,7 @@ import { parseCookies } from 'nookies'
 import { sign } from 'jsonwebtoken';
 import notificationimg from "../public/notificationimg.png"
 
-export default function register() {
+export default function Register() {
    const cookieuser = parseCookies()
    const tok = cookieuser.token;
    const [inputUsername , setWarningUsername] = useState(0)
@@ -68,12 +68,12 @@ export default function register() {
    const showWarnUsername = () => {
       return (
          <>
-            <div className='flex flex-row gap-[6px] mb-[10px] '>
+            <div className='flex flex-row gap-[6px] mb-[10px] ml-[10px]'>
                <div className='flex flex-col items-center w-full h-full'>
                   <img src={notificationimg.src} alt="" className="w-[11px] h-[11px]" /> 
                </div>
                <div className='flex flex-col items-center w-full h-full'>
-                  <p className="text-[10px] w-[220px] font-Commissioner font-normal text-[#DC1414]">This username isn't available. Please try another.</p>
+                  <p className="text-[10px] w-[420px] font-Commissioner font-normal text-[#DC1414]">Invalid username. Please try again. (Username must be English.)</p>
                </div>
             </div>
          </>
@@ -87,7 +87,7 @@ export default function register() {
                   <img src={notificationimg.src} alt="" className="w-[11px] h-[11px]" /> 
                </div>
                <div className='flex flex-col items-center w-full h-full'>
-                  <p className="text-[10px] w-[420px] font-Commissioner font-normal text-[#DC1414]">Invalid password. Please try again. (Use only at least 8 characters and one or more numbers)</p>
+                  <p className="text-[10px] w-[420px] font-Commissioner font-normal text-[#DC1414]">Invalid password. Please try again. (Password must be English at least 8 characters and it must contain at least one number and lowercase.)</p>
                </div>
             </div>
          </>
@@ -132,7 +132,7 @@ export default function register() {
                         <div style={{ backgroundImage: `url(/img_register.png)` }} className="bg-cover w-full h-full">
                            <div className='flex flex-col justify-end px-[30px] pb-[40px] w-full h-full'>
                               <div className="text-[65px] font-Commissioner font-bold text-[#FFFFFF]">FIDELIO</div>
-                              <p className="text-[15px] font-Commissioner font-semibold text-[#FFFFFF]">A web app that enhances the listening experience of the deaf people.</p>
+                              <p className="text-[15px] font-Commissioner font-semibold text-[#FFFFFF]">A web application that enhances the listening experience of the deaf people.</p>
                            </div>
                         </div>
                      </div>

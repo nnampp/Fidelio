@@ -6,7 +6,7 @@ import { useState } from "react"
 import notificationimg from "../public/notificationimg.png"
 
 
-   export default function register() {
+   export default function Signin_admin() {
       const cookieuser = parseCookies()
       const tok = cookieuser.token;
       const [OpenSearch,setOpenSearch] = useState(1); //for red box
@@ -80,7 +80,7 @@ import notificationimg from "../public/notificationimg.png"
                   <img src={notificationimg.src} alt="" className="w-[10px] h-[10px] " /> 
                </div>
                <div className='flex flex-col items-center w-full h-full'>
-                  <p className="text-[10px] w-[220px]  font-Commissioner font-normal text-[#FA3939]">Wrong password</p>
+                  <p className="text-[10px] w-[220px]  font-Commissioner font-normal text-[#FA3939]">Wrong password. Please try again.</p>
                </div>
             </div>
          </>
@@ -100,7 +100,7 @@ import notificationimg from "../public/notificationimg.png"
                         <div style={{ backgroundImage: `url(/img_register.png)` }} className="bg-cover w-full h-full">
                            <div className='flex flex-col justify-end px-[30px] pb-[40px] w-full h-full'>
                               <div className="text-[65px] font-Commissioner font-bold text-[#FFFFFF]">FIDELIO</div>
-                              <p className="text-[15px] font-Commissioner font-semibold text-[#FFFFFF]">A web app that enhances the listening experience of the deaf people.</p>
+                              <p className="text-[15px] font-Commissioner font-semibold text-[#FFFFFF]">A web application that enhances the listening experience of the deaf people.</p>
                            </div>
                         </div>
                      </div>
@@ -121,7 +121,7 @@ import notificationimg from "../public/notificationimg.png"
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>
                               {/*<input type="password" id="passlogin" name="passlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#7BB2E5] focus:ring focus:text-white focus:outline-none " placeholder="Enter your Password" required />*/}
                              
-                              <input type="password" id="passlogin" name="passlogin" className={`${password ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `}  placeholder="Enter your Password" required />
+                              <input type="password" id="passlogin" name="passlogin" className={`${password ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `}  placeholder="Enter your password" required />
 
                               {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
