@@ -18,9 +18,9 @@ export default function Listentosong() {
    const [newpath, setPath] = useState();
    const song = useContext(SongContext)
    const router = useRouter()
-   const [URL, setURL] = useState("https://firebasestorage.googleapis.com/v0/b/my-first-project-d7b77.appspot.com/o/song%2F2002.mp3?alt=media&token=287d461b-8c2a-409c-8670-67f9e46daf59");
+   const [URL, setURL] = useState("https://firebasestorage.googleapis.com/v0/b/my-first-project-d7b77.appspot.com/o/song%2FBLACKPINK_2Pink%20Venom.mp3?alt=media&token=a7f241ab-4f67-4c73-8dc4-d047de2bc348");
 
-   
+
    const { query: { name, artist, time, path }, } = router
 
 
@@ -42,7 +42,7 @@ export default function Listentosong() {
    const callPath = () => {
       // console.log(path)
       if (path === undefined) {
-         return (console.log("before : "))
+         return (console.log("before : " + path))
       }
       return (getDownloadURL(ref(storage, path))
          .then((url) => {
@@ -53,19 +53,6 @@ export default function Listentosong() {
             // Handle any errors
          }))
    }
-   // callPath()
-   // console.log(path)
-   // setNewdata(path)
-
-   // getDownloadURL(ref(storage, path))
-   //       .then((url) => {
-   //          console.log(url)
-   //          setURL(url);
-   //          // console.log(URL);
-   //       })
-   //       .catch((error) => {
-   //          // Handle any errors
-   //       });
 
 
    useEffect(() => {
@@ -80,7 +67,29 @@ export default function Listentosong() {
       getInitialProps();
       console.log("Change Page")
       audioPlayer?.current?.load();
+      window.addEventListener("keydown", function (event) {
+         if (event.defaultPrevented) {
+            return; // Do nothing if the event was already processed
+         }
+
+         if (event.key == " ") {
+            if (audioPlayer.current.paused) {
+               playSong();
+            }else{
+               pauseSong();
+            }
+         }else if (event.key == "ArrowRight"){
+            shiftRight();
+         }else if (event.key == "ArrowLeft"){
+            shiftLeft();
+         }
+
+         // Cancel the default action to avoid it being handled twice
+         event.preventDefault();
+      }, true);
+
    }, [])
+
 
 
    const calculateTime = (secs) => {
@@ -101,15 +110,7 @@ export default function Listentosong() {
       audioPlayer.current.play();
    }
 
-   // const checkKey = (e) =>{
-   //    if(e.key === "Enter" || e.key === " "){
-   //       e.preventDefault();
-   //       alert("test");
-   //    }else{
-   //       e.preventDefault();
-   //       alert("test2");
-   //    }
-   // }
+
 
    const showPlaySong = () => {
       if (playStatus) {
@@ -154,7 +155,7 @@ export default function Listentosong() {
       const seconds = audioPlayer?.current?.duration;
       setDuaration(seconds);
       callPath()
-      // console.log(newdata?.hits[0]?.videos?.small?.url)
+      playSong()
    }
 
    const checkPresent = (info) => {
@@ -269,11 +270,13 @@ export default function Listentosong() {
                            {/* <audio ref={audioPlayer} src="/Time.mp3" id="a1" onTimeUpdate={whenUpdate}>Your browser do not support</audio> */}
                            <audio ref={audioPlayer}
                               // src={newdata?.hits[0]?.videos?.small?.url}
-                              // src="https://firebasestorage.googleapis.com/v0/b/my-first-project-d7b77.appspot.com/o/song%2F2002.mp3?alt=media&token=287d461b-8c2a-409c-8670-67f9e46daf59"
+                              // src="https://firebasestorage.googleapis.com/v0/b/my-first-project-d7b77.appspot.com/o/song%2FBLACKPINK_2Pink%20Venom.mp3?alt=media&token=a7f241ab-4f67-4c73-8dc4-d047de2bc348"
                               src={URL}
                               id="a1"
                               onTimeUpdate={whenUpdate}
                               onLoadedData={setUpAudio}
+                              onEnded={() => nextSong()}
+                              // onCanPlay={()=> playSong()}
                            >
                               Your browser do not support
                            </audio>
