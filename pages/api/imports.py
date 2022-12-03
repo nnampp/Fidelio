@@ -22,13 +22,13 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route('/reciever', methods=["GET","POST"])
 @cross_origin()
 def importSong():
-
+    
     data = request.get_json()
     Link = data['Link']
     NameSong_unreplace = data['Songname'] 
-    NameSong = NameSong_unreplace.replace(' ','+')
+    NameSong = NameSong_unreplace.replace(' ','_')
     ArtistName_unreplace = data['Artist']
-    ArtistName = ArtistName_unreplace.replace(' ','+')
+    ArtistName = ArtistName_unreplace.replace(' ','_')
 
     try:
         app = firebase_admin.get_app()
@@ -39,13 +39,14 @@ def importSong():
         })
 
     config = {
-        "apiKey": "AIzaSyCrqd-SqgXVmyjCW2ExVCzJ-YH-E274bv8",
-        "authDomain": "fidelio-a5340.firebaseapp.com",
-        "databaseURL": "https://fidelio-a5340.firebaseio.com",
-        "projectId": "fidelio-a5340",
-        "storageBucket": "fidelio-a5340.appspot.com",
-        "messagingSenderId": "166063536125",
-        "appId": "1:166063536125:web:b439a508e7ef61481a0b94"
+        "apiKey": "AIzaSyAfkjuMhBt46PPW36XDmesayi-k5jQvVT4",
+        "authDomain": "my-first-project-d7b77.firebaseapp.com",
+        "databaseURL": "https://my-first-project-d7b77.firebaseio.com",
+        "projectId": "my-first-project-d7b77",
+        "storageBucket": "my-first-project-d7b77.appspot.com",
+        "messagingSenderId": "766071481517",
+        "appId": "1:766071481517:web:fe12e4076a9e6436091224",
+        "measurementId": "G-17004Y30QN"
     }
 
     firebase = pyrebase.initialize_app(config)
@@ -68,12 +69,12 @@ def importSong():
 
     iTagHighestResaudio = yt.streams.filter(only_audio=True).get_audio_only().itag
 
-    attenuate_db = 50
-    accentuate_db = 50
+    attenuate_db = 0
+    accentuate_db = 5
 
     artist = ArtistName or "artist_temp"
     name = NameSong or "name_temp"
-    path_on_cloud = "song/"+ artist + "_" + name +".mp3"
+    path_on_cloud = "song/"+artist+"_"+name+".mp3"
 
     def bass_line_freq(track):
         sample_track = list(track)
@@ -89,7 +90,7 @@ def importSong():
         return bass_factor
 
     try:
-        mumu = yt.streams.get_by_itag(iTagHighestResaudio).download(output_path='Bootsbase', filename=name+'.mp3') 
+        mumu = yt.streams.get_by_itag(iTagHighestResaudio).download(output_path='Bootsbase', filename=artist+"_"+name+'.mp3') 
         #เอาเพลงลงเครื่องก่อน
     except:
         print("Error in downloading the audio")
@@ -100,11 +101,11 @@ def importSong():
 
     for file in lst:  
         song = os.system(f"""ffmpeg -i {file} -acodec pcm_u8 -ar 22050 {file[:-4]}.wav""") #แปลงเป็น wav ลงเครื่อง
-        # os.remove(file) #เอาเพลง mp3 ในเครื่องออก
+        os.remove(file) #เอาเพลง mp3 ในเครื่องออก
 
-    sample =  AudioSegment.from_file('Bootsbase\\'+name+'.wav') #อ่านไฟล์ wav
+    sample =  AudioSegment.from_file('Bootsbase\\'+artist+"_"+name+'.wav') #อ่านไฟล์ wav *เเก้ตรงนี้ Path
 
-    os.remove('Bootsbase\\'+name+'.wav') #เอาเพลง wav ในเครื่องออก
+    os.remove('Bootsbase\\'+artist+"_"+name+'.wav') #เอาเพลง wav ในเครื่องออก *เเก้ตรงนี้ Path
 
     filtered = sample.low_pass_filter(bass_line_freq(sample.get_array_of_samples())) #Bootsbass
 
@@ -114,10 +115,10 @@ def importSong():
 
     doc_ref = db.collection(u'Song').document(name)
     doc_ref.set({
-        u'Name': name,
-        u'Artist': artist,
-        u'path': path_on_cloud,
-        u'time' : minute
+        u'NameSong': NameSong_unreplace,
+        u'ArtistName': ArtistName_unreplace,
+        u'Path': path_on_cloud,
+        u'Time' : minute
     })
 
     print("Boots")

@@ -20,13 +20,14 @@ cred = credentials.Certificate("Bootsbase\\fidelio-a5340-firebase-adminsdk-l14hw
 firebase_admin.initialize_app(cred)
 
 config = {
-    "apiKey": "AIzaSyCrqd-SqgXVmyjCW2ExVCzJ-YH-E274bv8",
-    "authDomain": "fidelio-a5340.firebaseapp.com",
-    "databaseURL": "https://fidelio-a5340.firebaseio.com",
-    "projectId": "fidelio-a5340",
-    "storageBucket": "fidelio-a5340.appspot.com",
-    "messagingSenderId": "166063536125",
-    "appId": "1:166063536125:web:b439a508e7ef61481a0b94"
+    "apiKey": "AIzaSyAfkjuMhBt46PPW36XDmesayi-k5jQvVT4",
+    "authDomain": "my-first-project-d7b77.firebaseapp.com",
+    "databaseURL": "https://my-first-project-d7b77.firebaseio.com",
+    "projectId": "my-first-project-d7b77",
+    "storageBucket": "my-first-project-d7b77.appspot.com",
+    "messagingSenderId": "766071481517",
+    "appId": "1:766071481517:web:fe12e4076a9e6436091224",
+    "measurementId": "G-17004Y30QN"
 }
 
 firebase = pyrebase.initialize_app(config)
@@ -34,7 +35,7 @@ firebase = pyrebase.initialize_app(config)
 db = firestore.client()
 storage = firebase.storage()
 
-link ="https://youtu.be/W42btIESAJo" #ลิ้งค์ ที่จะได้มาจากหน้าเว็บ
+link ="https://youtu.be/gQlMMD8auMs" #ลิ้งค์ ที่จะได้มาจากหน้าเว็บ
 try:
     yt = YouTube(link)
 except:
@@ -49,11 +50,11 @@ minute = M[1]+'.'+M[2] #เวลาของเพลงเป็นนาท�
 
 iTagHighestResaudio = yt.streams.filter(only_audio=True).get_audio_only().itag
 
-attenuate_db = 50
-accentuate_db = 50
+attenuate_db = 0
+accentuate_db = 5
 
-artist = 'KLEAR x TILLY BIRDSSSSSSSS' #ชื่อศิลปิน
-name = 'ขอบคุณที่เลิกกัลลลลน้าาาา' #ชื่อเพลงที่จะมาจาก หน้าเว็บที่กรอก
+artist = 'BLACKPINK' #ชื่อศิลปิน
+name = 'PinkVenom' #ชื่อเพลงที่จะมาจาก หน้าเว็บที่กรอก
 path_on_cloud = "songgithup/"+ name +".mp3"
 
 def bass_line_freq(track):

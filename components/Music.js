@@ -28,7 +28,7 @@ export default function Music({ name, artist, time, path }) {
                   <div className="ml-[49px]">
                      {/* <Link href={{pathname: `/listentosong/${listMusic[0].name}`,query: artist }}>  */}
                      {/* <Link href={`/listentosong/${name}`}>  */}
-                     <a onClick={() => nextPage()}>
+                     <a className="cursor-pointer" onClick={() => nextPage()}>
                         <img src={button_play.src} alt="" className="w-[62px] h-[62px]" />
                      </a>
                   </div>
