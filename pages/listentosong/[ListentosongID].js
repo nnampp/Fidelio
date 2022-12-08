@@ -3,7 +3,7 @@ import music from "../../public/music-playing.gif"
 import { useRouter } from "next/router"
 import Link from "next/link";
 import axios from 'axios';
-import { SongContext } from "../SongContext";
+import { SongContext } from "../../components/SongContext";
 import Router from "next/router";
 import { getStorage, ref, getMetadata, getDownloadURL } from "firebase/storage";
 import { initializeApp } from "firebase/app";
