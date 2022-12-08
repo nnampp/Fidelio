@@ -1,31 +1,41 @@
-import Test from "../components/Test"
-
-export default function Home() {
-  return (
-    <>
-      <div className='text-3xl font-Athiti'>Whereas recognition of the inherent dignity</div>
-      <div className='text-3xl font-Athiti italic'>Whereas recognition of the inherent dignity</div>
-      <div className='text-3xl font-Athiti font-bold italic'>Whereas recognition of the inherent dignity</div>
-      <br></br>
-      <div className='text-3xl font-Commissioner'>Whereas recognition of the inherent dignity</div>
-      <div className='text-3xl font-Commissioner italic'>Whereas recognition of the inherent dignity</div>
-      <div className='text-3xl font-Commissioner font-bold italic'>Whereas recognition of the inherent dignity</div>
-      <br></br>
-      <div className='text-3xl font-Dosis'>Whereas recognition of the inherent dignity</div>
-      <div className='text-3xl font-Dosis italic'>Whereas recognition of the inherent dignity</div>
-      <div className='text-3xl font-Dosis font-bold italic'>Whereas recognition of the inherent dignity</div>
-      <br></br>
-      <div className='text-3xl font-Kanit'>ลองทดสอบว่าผลลัพธ์มันเป็นยังไง มันก็เป็นงี้ไงหละ</div>
-      <div className='text-3xl font-Kanit italic'>ลองทดสอบว่าผลลัพธ์มันเป็นยังไง มันก็เป็นงี้ไงหละ</div>
-      <div className='text-3xl font-Kanit font-bold italic'>ลองทดสอบว่าผลลัพธ์มันเป็นยังไง มันก็เป็นงี้ไงหละ</div>
-      <br></br>
-      <div className='text-3xl font-League_Spartan'>ลองทดสอบว่าผลลัพธ์มันเป็นยังไง มันก็เป็นงี้ไงหละ</div>
-      <div className='text-3xl font-League_Spartan italic'>ลองทดสอบว่าผลลัพธ์มันเป็นยังไง มันก็เป็นงี้ไงหละ</div>
-      <div className='text-3xl font-League_Spartan font-bold italic'>ลองทดสอบว่าผลลัพธ์มันเป็นยังไง มันก็เป็นงี้ไงหละ</div>
+import { useContext, useEffect } from "react";
+import Music from "../components/Music";
+import { SongContext } from "./SongContext";
 
 
+export default function Index() {
+   const song = useContext(SongContext);
+   useEffect(() => {
+      const foo = async () => {
+         // const data1 = await song[0]?.Time;
 
-      <Test/>
-    </>
-  )
+      }
+      foo();
+   }, [])
+
+   const callSong = () => {
+      console.log(song)
+      if (song === undefined) {
+         console.log("meaw")
+         return (<div>Meaw</div>);
+      };
+      return (
+         <div>{song[0].Time}</div>
+      )
+   }
+
+   return (
+      <>
+         <div className="bg-black">
+            {
+               song?.map((num, i) => {
+                  return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} key={i} />
+               })
+            }
+            {
+               callSong()
+            }
+         </div>
+      </>
+   )
 }
