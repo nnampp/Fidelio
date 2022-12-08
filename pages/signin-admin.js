@@ -108,7 +108,7 @@ import notificationimg from "../public/notificationimg.png"
                      <form id="login-form" onSubmit={handleSubmit}>
                         <div className="flex flex-col w-full h-full items-center pt-[80px]">
                            <div className='text-[55px] font-League_Spartan font-bold text-[#FFFFFF] mb-[18px]'>Sign in</div>
-                           <div className='font-Commissioner font-normal text-[#FFFFFF] mb-[40px]'>Welcome ! Let's log in before to the website.</div>
+                           <div className='font-Commissioner font-normal text-[#FFFFFF] mb-[40px]'>Welcome ! Let&apos;s log in before to the website.</div>
                            <div className='flex flex-col items-start gap-[8px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Username</label>
                               {/*<input type="text" id="userlogin" name="userlogin" className="bg-[#2C2E47]  w-[343px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#7BB2E5] focus:ring focus:text-white focus:outline-none " placeholder="Enter your username" required />*/}
