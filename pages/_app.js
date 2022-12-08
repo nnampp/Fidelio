@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import { useState, useEffect } from 'react';
-import { SongContext } from './SongContext';
-
+import { SongContext } from '../components/SongContext';
 
 function MyApp({ Component, pageProps }) {
    const [song, setSong] = useState();
