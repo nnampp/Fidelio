@@ -4,7 +4,7 @@ import icon_search_white from "../public/icon_search_white.svg"
 import icon_search_black from "../public/icon_search_black.svg"
 import Music from "../components/Music"
 import no_result from "../public/no_result.png"
-import { SongContext } from "./SongContext";
+import { SongContext } from "../components/SongContext"
 
 export default function Search() {
    const [showicon, setShowicon] = useState(0);

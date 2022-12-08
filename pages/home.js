@@ -1,7 +1,8 @@
 import Navbar from "../components/Navbar"
 import Music from "../components/Music";
 import { useState, useEffect, useContext } from "react";
-import { SongContext } from "./SongContext";
+import { SongContext } from "../components/SongContext";
+
 const test = [
    {
       NameSong: "I love you 3000",

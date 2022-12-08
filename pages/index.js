@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import Music from "../components/Music";
-import { SongContext } from "./SongContext";
-
+import { SongContext } from "../components/SongContext";
 
 export default function Index() {
    const song = useContext(SongContext);

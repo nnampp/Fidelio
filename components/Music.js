@@ -3,7 +3,7 @@ import button_play from "../public/button_play.svg"
 import icon_headphone from "../public/icon_headphone.svg"
 import Link from "next/link";
 import Router from "next/router";
-import { SongContext } from "../pages/SongContext";
+import { SongContext } from "./SongContext";
 
 export default function Music({ name, artist, time, path }) {
    const song = useContext(SongContext);
