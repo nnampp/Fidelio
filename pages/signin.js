@@ -109,7 +109,7 @@ export default function Signin() {
                      <form id="login-form" onSubmit={handleSubmit}>
                         <div className="flex flex-col w-full h-full items-center pt-[80px]">
                            <div className='text-[55px] font-League_Spartan font-bold text-[#FFFFFF] mb-[18px]'>Sign in</div>
-                           <div className='font-Commissioner font-normal text-[#FFFFFF] mb-[40px]'>Welcome ! Let's log in before to the website.</div>
+                           <div className='font-Commissioner font-normal text-[#FFFFFF] mb-[40px]'>Welcome ! Let&apos;s log in before to the website.</div>
                            <div className='flex flex-col items-start gap-[8px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Username</label>
                              
@@ -142,7 +142,7 @@ export default function Signin() {
                            <div classname = "" >
                            <button type="submit" className="w-[170px] h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF]  font-bold font-League_Spartan bg-gradient-to-r from-[#723AE8] via-[#6763CE] to-[#7BB2E5] mt-[20px] focus:ring focus:ring-[#5D37AC]" >Login</button>
                            </div>
-                           <div className="font-League_Spartan text-[#696F79] mt-[35px]">I don't have an account? <Link href="/register"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Register</u></span></Link>  </div>
+                           <div className="font-League_Spartan text-[#696F79] mt-[35px]">I don&apos;t have an account? <Link href="/register"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Register</u></span></Link>  </div>
 
                         </div>
                         </form>
