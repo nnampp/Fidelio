@@ -7,7 +7,7 @@ export default function Index() {
    const router = useRouter()
    const song = useContext(SongContext);
    useEffect(() => {
-      router.push('/signin');
+      // router.push('/signin');
    }, [])
 
    return (
