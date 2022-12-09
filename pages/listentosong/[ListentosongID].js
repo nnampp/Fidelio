@@ -74,16 +74,25 @@ export default function Listentosong() {
             return; // Do nothing if the event was already processed
          }
 
-         if (event.key == " ") {
-            if (audioPlayer.current.paused) {
-               playSong();
-            }else{
-               pauseSong();
-            }
-         }else if (event.key == "ArrowRight"){
-            shiftRight();
-         }else if (event.key == "ArrowLeft"){
-            shiftLeft();
+         switch (event.key) {
+            case " " :
+               if (audioPlayer?.current?.paused) {
+                  playSong();
+               }else{
+                  pauseSong();
+               }
+               break;
+            
+            case "ArrowRight" :
+               shiftRight();
+               break;
+
+            case "" : 
+               shiftLeft();
+               break;
+
+            default :
+               console.log(event.key);
          }
 
          // Cancel the default action to avoid it being handled twice
@@ -104,12 +113,12 @@ export default function Listentosong() {
 
    const pauseSong = () => {
       setPlayStatus(0);
-      audioPlayer.current.pause();
+      audioPlayer?.current?.pause();
    }
 
    const playSong = () => {
       setPlayStatus(1);
-      audioPlayer.current.play();
+      audioPlayer?.current?.play();
    }
 
 
@@ -218,7 +227,9 @@ export default function Listentosong() {
       }
    }
 
-
+   const backhome = () => {
+      Router.push({pathname: `${user.Role=='Admin'  ? "/import" : "/home" }`}).then(() => router.reload())
+   }
 
 
    return (
@@ -231,9 +242,9 @@ export default function Listentosong() {
                         <img src={music.src} alt="" className="w-[621px] h-[576px] rounded-[30px] ml-9 mt-9" />
                         <div className="flex flex-col items-center w-full h-full">
                            <div className=" self-end hover:cursor-pointer" >
-                              <Link href={`${user.Role=='Admin'  ? "/import" : "/home" } `}>
+                              <a onClick={backhome}>
                                  <img src="../kakabath.png" alt="" className=" w-[17px] h-[16.37px] mr-[30px] mt-[28px] " />
-                              </Link>
+                              </a>
                            </div>
                            <div className="flex flex-row items-center mt-[140px]">
                               <img src="../Group 11.jpg" alt="" className=" rounded-[10px] w-[124px] h-[112px]  " />
