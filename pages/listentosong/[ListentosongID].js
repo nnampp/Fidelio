@@ -87,7 +87,7 @@ export default function Listentosong() {
                shiftRight();
                break;
 
-            case "" : 
+            case "ArrowLeft" : 
                shiftLeft();
                break;
 
