@@ -7,6 +7,8 @@ import { SongContext } from "../../components/SongContext";
 import Router from "next/router";
 import { getStorage, ref, getMetadata, getDownloadURL } from "firebase/storage";
 import { initializeApp } from "firebase/app";
+import { parseCookies } from 'nookies'
+import cookie from 'js-cookie'
 
 export default function Listentosong() {
    const [playStatus, setPlayStatus] = useState(0);
@@ -20,10 +22,11 @@ export default function Listentosong() {
    const router = useRouter()
    const [URL, setURL] = useState("https://firebasestorage.googleapis.com/v0/b/my-first-project-d7b77.appspot.com/o/song%2FBLACKPINK_2Pink%20Venom.mp3?alt=media&token=a7f241ab-4f67-4c73-8dc4-d047de2bc348");
 
-
    const { query: { name, artist, time, path }, } = router
 
-
+   const cookieuser = parseCookies()
+   const user =  cookieuser.user ? JSON.parse(cookieuser.user) : ""
+   
    const firebaseConfig = {
       apiKey: "AIzaSyAfkjuMhBt46PPW36XDmesayi-k5jQvVT4",
       authDomain: "my-first-project-d7b77.firebaseapp.com",
@@ -37,7 +40,6 @@ export default function Listentosong() {
    const app = initializeApp(firebaseConfig);
    const storage = getStorage(app);
    // const ListentosongID = router.query.ListentosongID
-
 
    const callPath = () => {
       // console.log(path)
@@ -229,7 +231,7 @@ export default function Listentosong() {
                         <img src={music.src} alt="" className="w-[621px] h-[576px] rounded-[30px] ml-9 mt-9" />
                         <div className="flex flex-col items-center w-full h-full">
                            <div className=" self-end hover:cursor-pointer" >
-                              <Link href="/home">
+                              <Link href={`${user.Role=='Admin'  ? "/import" : "/home" } `}>
                                  <img src="../kakabath.png" alt="" className=" w-[17px] h-[16.37px] mr-[30px] mt-[28px] " />
                               </Link>
                            </div>
