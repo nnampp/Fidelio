@@ -53,7 +53,7 @@ export default function Import() {
                            <img src={headphone.src} alt="" className=" w-[127px] h-[115px] leading-[110px]" />
                         </div>
                      </div>
-                     <form id="import-form" action="/import" onSubmit={handleSubmit}>
+                     <form id="import-form" action="/import" >
                      <div className="flex flex-col w-full h-full items-start pt-[72px] pl-[377px]">
                         {/* enter link */}
                         <div className='flex flex-col items-start gap-[4px] mb-[47px] '>
