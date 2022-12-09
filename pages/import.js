@@ -21,19 +21,22 @@ export default function Import() {
          Role: "Admin"
       };
 
-      const res = await fetch('https://fidelio-python-2xdoferf4a-as.a.run.app/', {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify(body)
-      });
+      try {
+         const res = await fetch('https://fidelio-python-2xdoferf4a-as.a.run.app/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+         });
 
-      const res2 = await res.json();
-      console.log(res2);
-
-      if(res2.status == 200) alert(res2.message)
-      else alert("Sorry, this song can't boost.")
-      
-      window.location = '/import';
+         const res2 = await res.json();
+         console.log(res2);
+         alert(res2.message)
+         window.location = '/import';
+      }
+      catch {
+         alert("Sorry, this song can't boost");
+         window.location = '/import';
+      }
    } 
 
    return (
