@@ -59,7 +59,7 @@ export default function Register() {
          setWarningPhoneNumber(1);
       }
       else {
-         //alert(res2.message);
+         alert(res2.message);
          window.location = '/signin';
       } 
    }

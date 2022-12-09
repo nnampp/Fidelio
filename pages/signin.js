@@ -47,7 +47,7 @@ export default function Signin() {
             cookie.set('token',res2.token);
             cookie.set('user',JSON.stringify(res2.user));
             //console.log(res2.user);
-            //alert(res2.message);
+            alert(res2.message);
             window.location = '/home';
          }
          else {
