@@ -59,13 +59,6 @@ export default function Home() {
                   <Navbar />
                   <div className="overflow-y-scroll h-screen mt-[101px] scrollbar scrollbar-width-2"> {/* part Song */}
                      { showSong() }
-                     <Music/>
-                     <Music/>
-                     <Music/>
-                     <Music/>
-                     <Music/>
-                     <Music/>
-                     <Music/>
                      <div className="w-full h-[132px]"></div>
                   </div>
                </div>
