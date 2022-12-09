@@ -39,10 +39,11 @@ import notificationimg from "../public/notificationimg.png"
          setWarningPassword(1);
       }
       else {
-         //alert(res2.message);
+         
          if(res2.user.Role === 'Admin') {
             cookie.set('token',res2.token);
             cookie.set('user',JSON.stringify(res2.user));
+            alert(res2.message);
             window.location = '/import';
          }
          else {
