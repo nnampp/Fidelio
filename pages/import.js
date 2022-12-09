@@ -34,7 +34,7 @@ export default function Import() {
          window.location = '/import';
       }
       catch {
-         alert("Sorry, this song can't boost");
+         alert("Sorry, this song can't boost. Please use song that have heavy rhythm.");
          window.location = '/import';
       }
    } 

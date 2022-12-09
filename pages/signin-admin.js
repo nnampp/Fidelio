@@ -13,11 +13,6 @@ import notificationimg from "../public/notificationimg.png"
       const [username , setWarningUsername] = useState(0) 
       const [password ,setWarningPassword] = useState(0)
       const [warning, setWarning] = useState(0) //for below warning
-      
-
-   if(tok) {
-      history.back();
-   }
 
    async function handleSubmit(e) {
       e.preventDefault();

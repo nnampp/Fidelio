@@ -20,7 +20,7 @@ export default function Listentosong() {
    const [newpath, setPath] = useState();
    const song = useContext(SongContext)
    const router = useRouter()
-   const [URL, setURL] = useState("https://firebasestorage.googleapis.com/v0/b/my-first-project-d7b77.appspot.com/o/song%2FBLACKPINK_2Pink%20Venom.mp3?alt=media&token=a7f241ab-4f67-4c73-8dc4-d047de2bc348");
+   const [URL, setURL] = useState("https://firebasestorage.googleapis.com/v0/b/my-first-project-d7b77.appspot.com/o/song%2FBLACKPINK_Pink%20Venom.mp3?alt=media&token=2781edfc-1fbb-46a3-b8eb-65307fe1315c");
 
    const { query: { name, artist, time, path }, } = router
 
