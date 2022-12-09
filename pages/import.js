@@ -30,7 +30,9 @@ export default function Import() {
       const res2 = await res.json();
       console.log(res2);
 
-      alert(res2.message)
+      if(res2.status == 200) alert(res2.message)
+      else alert("Sorry, this song can't boost.")
+      
       window.location = '/import';
    } 
 
