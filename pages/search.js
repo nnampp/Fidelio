@@ -135,19 +135,19 @@ export default function Search() {
       if (selectType == "All" && infoAll?.length != 0) {
          return (
             infoAll?.map((num, i) => {
-               return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} key={i} />
+               return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} path={num.Path} key={i} />
             })
          )
       } else if (selectType == "Song" && infoSong?.length != 0) {
          return (
             infoSong?.map((num, i) => {
-               return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} key={i} />
+               return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} path={num.Path} key={i} />
             })
          )
       } else if (selectType == "Artist" && infoArtist?.length != 0) {
          return (
             infoArtist?.map((num, i) => {
-               return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} key={i} />
+               return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} path={num.Path} key={i} />
             })
          )
       } else {

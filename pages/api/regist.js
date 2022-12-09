@@ -16,12 +16,11 @@ export default async function handler(req, res) {
     }
 
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    //var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,3}+)*$/;
     if(!Email.match(mailformat) || Email.match(thaiformat)){
         return res.status(422).json({ mailerror: "Email is not valid" })
     }
 
-    var phoneformat = /^[0]+\d{9}$/;
+    var phoneformat = /^[0]+?(\d{2})?[- ]?(\d{3})[- ]?(\d{4})$/;
     if(!Phonenumber.match(phoneformat)){
         return res.status(422).json({ phoneerror: "Phone number is not valid" })
     }
