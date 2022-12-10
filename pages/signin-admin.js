@@ -16,6 +16,8 @@ import notificationimg from "../public/notificationimg.png"
 
    async function handleSubmit(e) {
       e.preventDefault();
+      setWarningUsername(0);
+      setWarningPassword(0);
       const body = {
          Username: e.currentTarget.userlogin.value,
          Password: e.currentTarget.passlogin.value
