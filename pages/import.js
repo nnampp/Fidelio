@@ -39,6 +39,15 @@ export default function Import() {
       }
    } 
 
+   const checkFill = () => {
+      // console.log(Artist.length)
+      if(artist.length == 0 || songName.length == 0 || link.length == 0){
+         alert("Please fill out all fields");
+      }else{
+         setConfirm(1);
+      }
+   }
+
    return (
       <>
          <div className="w-full h-screen bg-black ">
@@ -74,7 +83,7 @@ export default function Import() {
                               placeholder="Artist" onChange={e => { setArtist(e.target.value); }} required />
                            </div>
                         </div>
-                        <button type="button" className="ml-[231px] w-[265px] h-[68px] rounded-[50px] text-[24px] text-[#FFFFFF] font-medium font-League_Spartan bg-gradient-to-r from-[#F68FF2] via-[#A35AAD] to-[#1565D8] focus:ring focus:ring-[#5D37AC]" onClick={() => {setConfirm(1)} } >Upload</button>
+                        <button type="button" className="ml-[231px] w-[265px] h-[68px] rounded-[50px] text-[24px] text-[#FFFFFF] font-medium font-League_Spartan bg-gradient-to-r from-[#F68FF2] via-[#A35AAD] to-[#1565D8] focus:ring focus:ring-[#5D37AC]" onClick={checkFill} >Upload</button>
                      </div>
                      </form>
                   </div>
