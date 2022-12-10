@@ -166,7 +166,7 @@ export default function Listentosong() {
       const seconds = audioPlayer?.current?.duration;
       setDuaration(seconds);
       callPath()
-      playSong()
+      // playSong()
    }
 
    const checkPresent = (info) => {
