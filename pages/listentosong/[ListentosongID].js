@@ -39,10 +39,8 @@ export default function Listentosong() {
    };
    const app = initializeApp(firebaseConfig);
    const storage = getStorage(app);
-   // const ListentosongID = router.query.ListentosongID
 
    const callPath = () => {
-      // console.log(path)
       if (path === undefined) {
          return (console.log("before : " + path))
       }
@@ -58,17 +56,9 @@ export default function Listentosong() {
 
 
    useEffect(() => {
-      const getInitialProps = async () => {
-         try {
-            const res = await axios.get('https://pixabay.com/api/videos/?key=31122990-29c4c67fa1bea010fa87f62df&q=flower+yellow');
-            setNewdata(res.data);
-         } catch (err) {
-            console.log(err);
-         }
-      };
-      getInitialProps();
-      console.log("Change Page")
-      audioPlayer?.current?.load();
+      audioPlayer?.current?.load(); // Reload Music always re-render/ refresh
+
+      // When keydown on Keyboard
       window.addEventListener("keydown", function (event) {
          if (event.defaultPrevented) {
             return; // Do nothing if the event was already processed
@@ -102,7 +92,6 @@ export default function Listentosong() {
    }, [])
 
 
-
    const calculateTime = (secs) => {
       const minus = Math.floor(secs / 60);
       const returnminus = (minus < 10) ? `0${minus}` : `${minus}`
@@ -121,8 +110,7 @@ export default function Listentosong() {
       audioPlayer?.current?.play();
    }
 
-
-
+   // For "Play" and "Pause" button 
    const showPlaySong = () => {
       if (playStatus) {
          return (<img src="../Pause.png" alt="" className=" w-[62px] h-[62px] ml-[36px] mt-[105px] hover:cursor-pointer " onClick={pauseSong} />)
@@ -166,9 +154,9 @@ export default function Listentosong() {
       const seconds = audioPlayer?.current?.duration;
       setDuaration(seconds);
       callPath()
-      // playSong()
    }
 
+   // For call-back function of findIndex
    const checkPresent = (info) => {
       return info.NameSong == name && info.ArtistName == artist
    }
@@ -209,7 +197,7 @@ export default function Listentosong() {
                time,
                path
             }
-         }).then(() => router.reload())
+         }).then(() => router.reload())// after next music then reload() before starting
       } else {// case 2 : array > 0
          const name = song[position + 1].NameSong
          const artist = song[position + 1].ArtistName
@@ -223,10 +211,11 @@ export default function Listentosong() {
                time,
                path
             }
-         }).then(() => router.reload())
+         }).then(() => router.reload()) // after previous music then reload() before starting
       }
    }
 
+   // function when click "Kakabat" 
    const backhome = () => {
       Router.push({pathname: `${user.Role=='Admin'  ? "/import" : "/home" }`}).then(() => router.reload())
    }

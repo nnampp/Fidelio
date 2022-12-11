@@ -17,7 +17,7 @@ export default function Music({ name, artist, time, path }) {
             time,
             path
          }
-      }).then(() => window.location.reload())
+      }).then(() => window.location.reload()) // after next page then reload() before starting
    }
 
    return (
@@ -26,8 +26,6 @@ export default function Music({ name, artist, time, path }) {
             <div className="basis-5/6">
                <div className="flex flex-row items-center">
                   <div className="ml-[49px]">
-                     {/* <Link href={{pathname: `/listentosong/${listMusic[0].name}`,query: artist }}>  */}
-                     {/* <Link href={`/listentosong/${name}`}>  */}
                      <a className="cursor-pointer" onClick={() => nextPage()}>
                         <img src={button_play.src} alt="" className="w-[62px] h-[62px]" />
                      </a>

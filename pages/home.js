@@ -3,53 +3,17 @@ import Music from "../components/Music";
 import { useState, useEffect, useContext } from "react";
 import { SongContext } from "../components/SongContext";
 
-const test = [
-   {
-      NameSong: "I love you 3000",
-      ArtistName: "someone",
-      Time: "3:46"
-   },
-
-];
-
 export default function Home() {
-   // const [song, getSong] = useState();
    const song = useContext(SongContext);
-   useEffect(() => {
-      // async function getAllSonglist() {
-      //    const res = await fetch('/api/song', {
-      //    method: 'POST',
-      //    headers: { 'Content-Type': 'application/json' }
-      // });
-      // const res2 = await res.json();
-      // const songAll = await Object.values(res2.song);
-      // await getSong(songAll);
-      // }
-      // getAllSonglist();
 
-      
-   }, []);
-
-   const showSong = () => {
+   // Show all song
+   const showSong = () => { 
       return (
          song?.map((num, i) => {
             return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} path={num.Path} key={i} />
          })
       )
    }
-
-   const callSong = () => {
-      console.log(song)
-      if (song === undefined) {
-         // console.log("meaw")
-         return (<div className="text-white">Meaw</div>);
-      };
-      return (
-         <div className="text-white">{song[0].Path}</div>
-      )
-   }
-   
-   
 
    return (
       <>
