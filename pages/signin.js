@@ -4,6 +4,7 @@ import { parseCookies } from 'nookies'
 import cookie from 'js-cookie'
 import { useState } from "react"
 import notificationimg from "../public/notificationimg.png"
+import { useRouter } from 'next/router'
 
 export default function Signin() {
    const cookieuser = parseCookies()
@@ -12,7 +13,8 @@ export default function Signin() {
    const [username, setWarningUsername] = useState(0)
    const [password, setWarningPassword] = useState(0)
    const [warning, setWarning] = useState(0) //for below warning
-
+   const router = useRouter()
+  
    var error
 
    // function submit form 
@@ -45,7 +47,7 @@ export default function Signin() {
             cookie.set('token', res2.token);
             cookie.set('user', JSON.stringify(res2.user));
             alert(res2.message);
-            window.location = '/home';
+            router.push('/home');
          }
          else {
             alert("Page available for user only !!");
@@ -64,6 +66,7 @@ export default function Signin() {
                   <p className="text-[10px] w-[220px]  font-Commissioner font-normal text-[#FA3939]">Enter a valid username. Please try again.</p>
                </div>
             </div>
+
          </>
       )
    }
