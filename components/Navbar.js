@@ -32,11 +32,11 @@ export default function Navbar() {
       setEmail(user.Email); 
    } , [])
 
+   //Function Logout
    async function handleLogout() {
       console.log("logout!");
       cookie.remove('token');
       cookie.remove('user');
-      //router.push('/signin');
       if(user.Role=='Admin')
          router.push('/signin-admin');
       else if(user.Role=='User')

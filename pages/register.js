@@ -17,6 +17,7 @@ export default function Register() {
       history.back();
    }
 
+   // when submit form
    async function handleSubmit(e) {
       e.preventDefault();
       const body = {
@@ -39,20 +40,15 @@ export default function Register() {
          setWarningUsername(1);
       }
       else if (res2.passworderror) {
-            //focus(res2.error);
-            //alert(res2.error);
-         //setWarningUsername(0);
          setWarningUsername(0);
          setWarningPassword(1);
       } 
       else if (res2.mailerror) {
-         //setWarningUsername(0);
          setWarningUsername(0);
          setWarningPassword(0);
          setWarningEmail(1);
       }
       else if (res2.phoneerror) {
-         //setWarningUsername(0);
          setWarningUsername(0);
          setWarningPassword(0);
          setWarningEmail(0);
@@ -144,30 +140,15 @@ export default function Register() {
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Username</label>
                               <input type="text" id="username" name="username" className={`${inputUsername ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[445px] h-[56px] border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your username" required />
-                              {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>
                               <input type="password" id="password" name="password" className={`${inputPassword ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[445px] h-[56px] border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your password" required />
-                              {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
-
                            <div className='flex flex-col items-start gap-[4px] mb-[24px]'>
                               <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Full name</label>
                               <input type="text" id="fullname" name="fullname"  className="bg-[#2C2E47]  w-[445px] h-[56px] border border-[#D6D5E8]  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none" placeholder="Enter your full name" required />
-                              {/* <p class="text-sm text-green-600 font-Commissioner "><span class="font-medium">Well done!</span> Some success messsage.</p> */}
                            </div>
-
-                           {/* <div className='flex flex-row gap-[7px] mb-[24px]'>
-                              <div className='flex flex-col items-start gap-[4px] '>
-                                 <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">First Name</label>
-                                 <input type="text" className="bg-[#2C2E47]  w-[220px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your first name" required />
-                              </div>
-                              <div className='flex flex-col items-start gap-[4px] '>
-                                 <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Last Name</label>
-                                 <input type="text" className="bg-[#2C2E47]  w-[220px] h-[56px]  border border-[#D6D5E8] rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none " placeholder="Enter your last name" required />
-                              </div>
-                           </div> */}
                            <div className='flex flex-row gap-[7px] mb-[37px] h-[60px]'>
                               <div className='flex flex-col items-start gap-[4px] '>
                                  <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Email</label>
@@ -178,7 +159,8 @@ export default function Register() {
                                  <input type="text" id="phonenumber" name="phonenumber" className={`${inputPhoneNumber ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[220px] h-[56px] border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your phone number" required />
                               </div>
                            </div>
-
+                           
+                           {/* Check condition */}
                            <div className={`${inputUsername ? "" : "hidden" } `}>
                               {showWarnUsername()}
                            </div>
@@ -192,7 +174,7 @@ export default function Register() {
                               {showWarnPhoneNumber()}
                            </div>
 
-                           <button type="submit" href="/signin" className="w-[170px]  h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-medium font-League_Spartan bg-gradient-to-r from-[#794BD9] via-[#A35AAD] to-[#FA59AB] mb-[12px] focus:ring focus:ring-[#5D37AC]" >Register Account</button>
+                           <button type="submit" href="/signin" className="w-[170px] h-[41px] rounded-[50px] text-[15px] text-[#FFFFFF] font-medium font-League_Spartan bg-gradient-to-r from-[#794BD9] via-[#A35AAD] to-[#FA59AB] mb-[12px] focus:ring focus:ring-[#5D37AC]" >Register Account</button>
                            <div className="font-League_Spartan text-[#696F79] text-[12px]">Do you already have an account? <Link href="/signin"><span className="text-[#1565D8]"><u className=' cursor-pointer'>Sign in</u></span></Link>  </div>
                         </div>
                         </form>

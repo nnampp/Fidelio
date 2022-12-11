@@ -18,34 +18,16 @@ export default function Search() {
    const [infoSong, setInfosong] = useState();
    const [infoArtist, setInfoartist] = useState();
    const [infoAll, setInfoall] = useState();
-   // const [song, getSong] = useState();
    const song = useContext(SongContext);
 
-   //useEffect(() => {
-      // async function getAllSonglist() {
-      //    const res = await fetch('/api/song', {
-      //    method: 'POST',
-      //    headers: { 'Content-Type': 'application/json' }
-      // });
-      // const res2 = await res.json();
-      // const songAll = await Object.values(res2.song);
-      // await getSong(songAll);
-      // }
-      // getAllSonglist();
-   //}, []);
 
    async function onSubmit(e) {
       e.preventDefault()
       setSelectType("All");
       searchAll();
       setLastvalue(resultNotFound.current.value);
-      // ใหม่
-      // const body = {
-      //    Name: e.currentTarget.Name.value
-      // }
       const res3= song.filter(searchsongfun=>searchsongfun.NameSong?.toLowerCase().includes(content));
       await setInfosong(res3);
-      //console.log(res3);
       const res4= song.filter(searchsongfun=>searchsongfun.ArtistName?.toLowerCase().includes(content));
       await setInfoartist(res4);
 
@@ -58,74 +40,34 @@ export default function Search() {
        }
 
       await setInfoall(getUnion(res3,res4));
-      
-
-      //await getinfoall(res3.concat(res4));
-      //console.log(song.filter(searchsongfun=>searchsongfun.NameSong.includes(content)));
-      
-      // const searchsongfunction = {
-         
-      // }
-
-      // อันเก่า
-      // const body = {
-      //   Name: e.currentTarget.Name.value
-      // }
-      // setSelectType("All");
-      // searchAll();
-      // setLastvalue(resultNotFound.current.value);
-
-      // const res = await fetch('/api/searchsong', {
-      //    method: 'POST',
-      //    headers: { 'Content-Type': 'application/json' },
-      //    body: JSON.stringify(body)
-      // });
-
-      // const res2 = await res.json();
-      // console.log(res2);
-      // const songAll = await Object.values(res2.song);
-      // const songArtistAll = await Object.values(res2.Artist);
-      // await getinfosong(songAll);
-      // await getinfoartist(songArtistAll);
-      // await getinfoall(songAll.concat(songArtistAll));
-      // console.log(songAll);
    }
 
-
-
+   //when click "ALL" button
    const searchAll = () => {
       if (content.length == 0) {
          setWarning(1);
       } else {
          setWarning(0);
-
-         {/*Get API of All*/ }
-
          setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
       }
-
-      
    }
+
+   //when click "Song" button
    const searchSong = () => {
       if (content.length == 0) {
          setWarning(1);
       } else {
          setWarning(0);
-
-         {/*Get API of All*/ }
-
          setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
       }
-      
    }
+
+   //when click "Artist" button
    const searchArtist = () => {
       if (content.length == 0) {
          setWarning(1);
       } else {
          setWarning(0);
-
-         {/*Get API of All*/ }
-
          setOpenSearch(1); {/*Call showMusic auto since openSearch has parent element of showMusic */ }
       }
       
@@ -150,7 +92,7 @@ export default function Search() {
                return <Music name={num.NameSong} artist={num.ArtistName} time={num.Time} path={num.Path} key={i} />
             })
          )
-      } else {
+      } else { // if empty field
          return (
             <>
                <div className="flex flex-col items-center mt-[53px]">

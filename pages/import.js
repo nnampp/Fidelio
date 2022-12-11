@@ -11,6 +11,7 @@ export default function Import() {
    const [songName, setSongName] = useState("");
    const [artist, setArtist] = useState("");
 
+   // Submit import 
    async function handleSubmit(e) {
       e.preventDefault();
 
@@ -39,8 +40,8 @@ export default function Import() {
       }
    } 
 
+   // Function check form of 3 field
    const checkFill = () => {
-      // console.log(Artist.length)
       if(artist.length == 0 || songName.length == 0 || link.length == 0){
          alert("Please fill out all fields");
       }else{
