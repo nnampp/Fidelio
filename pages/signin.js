@@ -19,6 +19,8 @@ export default function Signin() {
 
    // function submit form 
    async function handleSubmit(e) {
+      setWarningUsername(0);
+      setWarningPassword(0);
       e.preventDefault();
       const body = {
          Username: e.currentTarget.userlogin.value,
