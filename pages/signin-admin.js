@@ -106,7 +106,7 @@ import notificationimg from "../public/notificationimg.png"
                               <input type="text" id="userlogin" name="userlogin" className={`${username? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border  rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `} placeholder="Enter your username" required />                              
                            </div>
                            <div className='flex flex-col items-start gap-[8px] mb-[51px] h-[40px]'>
-                              <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>=
+                              <label htmlFor="" className="font-Commissioner text-[14px] font-normal text-[#FFFFFF] ml-[18px] after:content-['*'] after:ml-0.5 after:text-red-500">Password</label>
                               <input type="password" id="passlogin" name="passlogin" className={`${password ? "border-[#FA3939]" : "border-[#D6D5E8]"} bg-[#2C2E47]  w-[343px] h-[56px]  border rounded-[10px] pl-[18px] py-[18px] text-[#FFFFFF] font-Commissioner text-[14px] focus:ring-[#5D37AC] focus:ring focus:text-white focus:outline-none `}  placeholder="Enter your password" required />
                            </div>
                            {/* Show waring with condition after handleSubmit() */}
